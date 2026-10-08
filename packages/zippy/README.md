@@ -110,7 +110,16 @@ Packaged macOS builds use `tauri-plugin-updater` with GitHub Releases (`zippy-v{
 
 After a release, users can download the `.dmg` from the [docs Zippy page](https://tonychan-hub.github.io/AppSetup/guide/zippy#download).
 
-Unsigned Apple builds are fine for internal Phase 1 testing. macOS Gatekeeper may require right-click → Open the first time. Updater signatures are separate from Apple code signing.
+macOS builds use **ad-hoc** Apple code signing (`signingIdentity: "-"`) so Apple Silicon Gatekeeper does not show a false “damaged” dialog after download. First launch may still need **right-click → Open** (or System Settings → Privacy & Security → Open Anyway). Full Developer ID + notarization is not required for Phase 1. Updater signatures (minisign) are separate from Apple code signing.
+
+If an older DMG still says “damaged”, clear quarantine then open:
+
+```bash
+xattr -cr ~/Downloads/Zippy_*.dmg
+# after dragging to Applications:
+xattr -cr /Applications/Zippy.app
+codesign --force --deep --sign - /Applications/Zippy.app
+```
 
 ## Version
 

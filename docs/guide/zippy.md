@@ -167,3 +167,17 @@ Pack with `bash packages/zippy_flutter/scripts/pack.sh`, or let `create-flutter-
 Bump `@bear1210/zippy` and push to `main` to trigger the Zippy release workflow. Packaged builds publish a `.dmg` plus `download.json` / `latest.json` to GitHub Releases; the docs site also mirrors the `.dmg` onto GitHub Pages so the download button above prefers that mirror when GitHub Releases CDN is unreachable.
 
 Current macOS runners produce an **Apple Silicon (aarch64)** installer (M1–M4). If GitHub download fails, use the primary docs button, or build locally with `npm run zippy:build`.
+
+### DMG says “damaged”?
+
+That is usually Gatekeeper rejecting an incomplete signature (the file itself is often fine). From **0.0.3** onward CI seals a full ad-hoc signature. For older builds:
+
+```bash
+xattr -cr ~/Downloads/Zippy_*.dmg
+# after dragging to Applications:
+xattr -cr /Applications/Zippy.app
+codesign --force --deep --sign - /Applications/Zippy.app
+open /Applications/Zippy.app
+```
+
+You may still need **Open Anyway** under System Settings → Privacy & Security on first launch.

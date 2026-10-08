@@ -167,3 +167,17 @@ ZippyProbe.registerMmkvStore('session', () => {'token': '…'});
 Bump `@bear1210/zippy` 并推送到 `main` 会触发 Zippy 发版工作流。打包产物会把 `.dmg` 以及 `download.json` / `latest.json` 发布到 GitHub Releases；文档站点还会把 `.dmg` 镜像到 GitHub Pages（上方下载按钮默认走镜像，避免部分网络访问不了 Releases CDN）。
 
 当前 macOS runner 产出 **Apple Silicon（aarch64）** 安装包，适用于 M1 / M2 / M3 / M4。若 GitHub 下载失败，可用文档页主按钮，或本机 `npm run zippy:build`。
+
+### 打开 DMG 时提示「已损坏」？
+
+这通常是 Gatekeeper 对未完整签名包的误报（文件本身未必损坏）。从 **0.0.3** 起 CI 会做完整 ad-hoc 签名。若你装的是更早版本，在终端执行：
+
+```bash
+xattr -cr ~/Downloads/Zippy_*.dmg
+# 拖到「应用程序」后：
+xattr -cr /Applications/Zippy.app
+codesign --force --deep --sign - /Applications/Zippy.app
+open /Applications/Zippy.app
+```
+
+首次仍可能需要在「系统设置 → 隐私与安全性」里点 **仍要打开**。

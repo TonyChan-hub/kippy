@@ -135,6 +135,45 @@ jobs:
           echo "::warning::Signed build failed with no DMG; retrying without updater artifacts..."
           build_unsigned
 
+      # Apple Silicon rejects incomplete linker-signed bundles as "damaged" when quarantined.
+      # Force a full ad-hoc .app seal even if tauri.conf signingIdentity was skipped.
+      - name: Ensure macOS ad-hoc codesign
+        if: steps.tag_check.outputs.skip != 'true'
+        working-directory: packages/zippy
+        run: |
+          set -euo pipefail
+          APP=$(ls -d src-tauri/target/release/bundle/macos/*.app 2>/dev/null | head -1 || true)
+          if [ -z "$APP" ]; then
+            echo "No .app bundle found; skipping codesign repair."
+            exit 0
+          fi
+          if codesign --verify --deep --strict "$APP" 2>/dev/null; then
+            echo "App already has a valid signature: $APP"
+          else
+            echo "Re-signing with ad-hoc identity: $APP"
+            codesign --force --deep --sign - "$APP"
+            codesign --verify --deep --strict "$APP"
+          fi
+          # Rebuild DMG from the sealed .app so the installer carries the fixed signature.
+          DMG_DIR="src-tauri/target/release/bundle/dmg"
+          mkdir -p "$DMG_DIR"
+          VERSION=$(node -p "require('./package.json').version")
+          ARCH=$(uname -m)
+          case "$ARCH" in
+            arm64) ARCH_LABEL=aarch64 ;;
+            x86_64) ARCH_LABEL=x86_64 ;;
+            *) ARCH_LABEL="$ARCH" ;;
+          esac
+          DMG_PATH="$DMG_DIR/Zippy_${VERSION}_${ARCH_LABEL}.dmg"
+          STAGE=$(mktemp -d)
+          cp -R "$APP" "$STAGE/"
+          ln -s /Applications "$STAGE/Applications"
+          rm -f "$DMG_PATH"
+          hdiutil create -volname "Zippy" -srcfolder "$STAGE" -ov -format UDZO "$DMG_PATH"
+          rm -rf "$STAGE"
+          echo "Rebuilt DMG: $DMG_PATH"
+          codesign -dvvv "$APP" 2>&1 | head -20 || true
+
       - name: Write updater latest.json + docs download.json
         if: steps.tag_check.outputs.skip != 'true'
         env:
