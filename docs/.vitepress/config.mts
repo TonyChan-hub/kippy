@@ -89,6 +89,10 @@ export default defineConfig({
               items: [
                 { text: 'All posts', link: '/blog/' },
                 {
+                  text: 'Quick scaffold: three media permissions',
+                  link: '/blog/quick-scaffold-media',
+                },
+                {
                   text: 'NativeKit: permission facade',
                   link: '/blog/native-kit-permissions',
                 },
@@ -175,6 +179,10 @@ export default defineConfig({
               text: '技术博客',
               items: [
                 { text: '全部文章', link: '/zh/blog/' },
+                {
+                  text: '快速搭建：三种媒体权限',
+                  link: '/zh/blog/quick-scaffold-media',
+                },
                 {
                   text: 'NativeKit：双端权限门面',
                   link: '/zh/blog/native-kit-permissions',
