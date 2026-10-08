@@ -29,7 +29,7 @@ features:
     link: /guide/env-setup
     linkText: Env setup
   - title: Zippy inspector
-    details: Tauri desktop tool — Git (multi-repo + SSH), Inspector (MMKV / SQLite / network / perf), and Tools (adb / Simulator). Download macOS builds from the Zippy guide.
+    details: Tauri desktop tool — Git (multi-repo + SSH), Inspector (MMKV / SQLite / network / perf), Tools (adb / Simulator), and APK (APK/AAB unpack + size analysis). Download macOS builds from the Zippy guide.
     link: /guide/zippy
     linkText: About Zippy
   - title: NativeKit (Beta)

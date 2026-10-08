@@ -11,7 +11,7 @@ Kippy is a monorepo of **business-free** mobile scaffolds and macOS toolchain he
 | Android SDK / JDK (macOS) | `npx -p @bear1210/create-rn-template setup-rn-android-env` |
 | iOS CocoaPods toolchain (macOS) | `npx -p @bear1210/create-rn-template setup-rn-ios-env` |
 | Diagnose the machine | `npx -p @bear1210/create-rn-template check-mobile-env` |
-| Zippy desktop (Git / Inspector / Tools) | [Download Zippy](./zippy#download) — feature guide on the [Zippy page](./zippy); connect Inspector to the scaffold probe on port `9876` |
+| Zippy desktop (Git / Inspector / Tools / APK) | [Download Zippy](./zippy#download) — feature guide on the [Zippy page](./zippy); connect Inspector to the scaffold probe on port `9876` |
 | NativeKit **(Beta)** — in-app permissions API | Opt in with `--modules=permission` / `--preset=media`, or `npx @bear1210/native-kit add permission` — [NativeKit guide](./native-kit) (experimental) |
 
 ## Requirements

@@ -1,6 +1,6 @@
 # Zippy 调试器
 
-Zippy 是基于 **Tauri 2** 的桌面应用，顶层三个大模式：**Git**（多仓库 + SSH Profile）、**Inspector**（移动端调试数据）、**Tools**（adb / iOS Simulator 快捷命令）。通过 **GitHub Releases** 分发，不发布到 npm。
+Zippy 是基于 **Tauri 2** 的桌面应用，顶层四个大模式：**Git**（多仓库 + SSH Profile）、**Inspector**（移动端调试数据）、**Tools**（adb / iOS Simulator 快捷命令）、**APK**（本地包体分析 Playground）。通过 **GitHub Releases** 分发，不发布到 npm。
 
 <ZippyDownload locale="zh" />
 
@@ -69,6 +69,30 @@ Probe WebSocket 路径固定为 `/probe`（`ws://host:9876/probe`）。默认端
 
 典型 USB Android 流程：**Tools → Forward** → **Inspector → Connect** 到 `127.0.0.1:9876`。真机跑 Metro 用 **Reverse**（默认 `8081`）。
 
+### APK Playground {#apk-playground}
+
+离线分析本地 Android 包，不需要 probe 或真机。支持拖入 / 打开 `.apk` / `.aab` / `.xapk` / `.apkm`。
+
+分步操作与发版前检查清单见博客：[Zippy APK Playground 使用说明](/zh/blog/zippy-apk-playground)。
+
+| 页签 | 能看到什么 |
+| ---- | ---------- |
+| **Overview** | 包名 / 版本 / SDK / ABI 等摘要，以及混淆 %、缩减 %、DEX 优化分、ZIP 压缩缩减等速览指标 |
+| **Size** | 按类别（DEX、Native、`res`、assets、`resources.arsc`、Manifest、META-INF、其它）的体积占比；Install / Download 体积；最大条目 Top N |
+| **Size → DEX** | 各 DEX 的类 / 方法 / 字段 / 字符串数量；是否含 debug info；优化分（剥离调试信息 + minify 信号） |
+| **Size → 混淆 / 缩减** | 类名混淆百分比（ProGuard/R8 风格短名）；ZIP 缩减 %；代码缩减估计 %；综合缩减 % |
+| **16 KB** | 16 KB 页大小兼容：ELF `PT_LOAD p_align ≥ 16384`，以及 STORED `.so` 的 ZIP 数据偏移对齐（重点检查 `arm64-v8a` / `x86_64`） |
+| **Signing** | 签名方案（v1 / v2 / v3 / v3.1 等）与证书主体 / 指纹。AAB 主要识别 `META-INF` 的 JAR / v1 |
+| **Manifest** | 可读的 Manifest（APK 二进制 AXML 或 AAB protobuf `XmlNode`）、权限与四大组件 |
+| **Resources / Files** | 浏览 `assets`、`res/raw`、其它 `res`、`lib`、`dex`、`META-INF`；预览文本与图片。二进制 Manifest 会先解码，避免乱码 |
+| **Unpack** | 将整个包解压到指定目录 |
+
+说明：
+
+- AAB 的模块名（如 `base`、feature）会在 Overview 中列出。
+- 混淆 / 缩减数字来自 DEX 描述符与 ZIP 压缩的**启发式估计**，不能替代 mapping 文件或 Play Console 体积报告。
+- 无 Native 库的应用在 16 KB 检查中视为兼容；重点检查 64 位 ABI。
+
 ## 前置条件
 
 - Node.js 20+
@@ -76,6 +100,7 @@ Probe WebSocket 路径固定为 `/probe`（`ws://host:9876/probe`）。默认端
 - 系统 `git`（Git 模式）
 - `adb` / Xcode（Tools 模式，用到时才需要）
 - macOS（主要目标平台）
+- APK 模式无需额外 Android SDK 工具（纯 Rust 分析）
 
 ## 开发 {#develop}
 

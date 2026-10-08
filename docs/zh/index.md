@@ -29,7 +29,7 @@ features:
     link: /zh/guide/env-setup
     linkText: 环境配置
   - title: Zippy 调试器
-    details: Tauri 桌面工具 — Git（多仓库 + SSH）、Inspector（MMKV / SQLite / 网络 / 性能）、Tools（adb / 模拟器快捷操作）。可在 Zippy 文档页下载 macOS 安装包。
+    details: Tauri 桌面工具 — Git（多仓库 + SSH）、Inspector（MMKV / SQLite / 网络 / 性能）、Tools（adb / 模拟器快捷操作）、APK（APK/AAB 解包与体积分析）。可在 Zippy 文档页下载 macOS 安装包。
     link: /zh/guide/zippy
     linkText: 了解 Zippy
   - title: NativeKit（Beta）

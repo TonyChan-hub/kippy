@@ -29,6 +29,8 @@ thiserror = "2"
 url = "2"
 dirs = "6"
 base64 = "0.22"
+apk-info = "1"
+zip = "2"
 
 [profile.release]
 panic = "abort"

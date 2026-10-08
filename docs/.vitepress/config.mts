@@ -89,6 +89,10 @@ export default defineConfig({
               items: [
                 { text: 'All posts', link: '/blog/' },
                 {
+                  text: 'Zippy APK Playground',
+                  link: '/blog/zippy-apk-playground',
+                },
+                {
                   text: 'Quick scaffold: three media permissions',
                   link: '/blog/quick-scaffold-media',
                 },
@@ -179,6 +183,10 @@ export default defineConfig({
               text: '技术博客',
               items: [
                 { text: '全部文章', link: '/zh/blog/' },
+                {
+                  text: 'Zippy APK Playground 使用说明',
+                  link: '/zh/blog/zippy-apk-playground',
+                },
                 {
                   text: '快速搭建：三种媒体权限',
                   link: '/zh/blog/quick-scaffold-media',

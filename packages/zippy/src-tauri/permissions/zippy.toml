@@ -273,6 +273,21 @@ identifier = "allow-tools-record-stop"
 description = "Stop screen recording and save the file"
 commands.allow = ["tools_record_stop"]
 
+[[permission]]
+identifier = "allow-apk-analyze"
+description = "Analyze an APK for manifest, signing, 16KB, and resources"
+commands.allow = ["apk_analyze"]
+
+[[permission]]
+identifier = "allow-apk-unpack"
+description = "Unpack an APK archive to a local directory"
+commands.allow = ["apk_unpack"]
+
+[[permission]]
+identifier = "allow-apk-read-entry"
+description = "Read and preview a single entry from an APK"
+commands.allow = ["apk_read_entry"]
+
 [[set]]
 identifier = "allow-zippy"
 description = "All Zippy desktop commands"
@@ -331,5 +346,8 @@ permissions = [
   "allow-tools-log-start",
   "allow-tools-log-stop",
   "allow-tools-record-start",
-  "allow-tools-record-stop"
+  "allow-tools-record-stop",
+  "allow-apk-analyze",
+  "allow-apk-unpack",
+  "allow-apk-read-entry"
 ]

@@ -11,7 +11,7 @@ Kippy 是一套**无业务逻辑**的移动端脚手架与 macOS 工具链助手
 | Android SDK / JDK（macOS） | `npx -p @bear1210/create-rn-template setup-rn-android-env` |
 | iOS CocoaPods 工具链（macOS） | `npx -p @bear1210/create-rn-template setup-rn-ios-env` |
 | 诊断本机环境 | `npx -p @bear1210/create-rn-template check-mobile-env` |
-| Zippy 桌面端（Git / Inspector / Tools） | [下载 Zippy](./zippy#download) — 功能说明见 [Zippy 文档](./zippy)；Inspector 连接脚手架 probe（端口 `9876`） |
+| Zippy 桌面端（Git / Inspector / Tools / APK） | [下载 Zippy](./zippy#download) — 功能说明见 [Zippy 文档](./zippy)；Inspector 连接脚手架 probe（端口 `9876`） |
 | NativeKit **（Beta）** — App 内权限等原生 API | 创建时加 `--modules=permission` / `--preset=media`，或事后 `npx @bear1210/native-kit add permission` — [NativeKit 指南](./native-kit)（实验中） |
 
 ## 环境要求

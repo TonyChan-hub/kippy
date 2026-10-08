@@ -9,7 +9,7 @@
     <div class="app" id="app-root" data-mode="inspector">
       <header class="mode-bar">
         <div class="brand mode-brand">
-          <span class="brand-mark">Z</span>
+          <img class="brand-mark" src="/brand-mark.png" alt="" width="36" height="36" />
           <div>
             <div class="brand-name">Zippy</div>
             <div class="brand-sub">devtools</div>
@@ -30,6 +30,9 @@
           </button>
           <button class="mode-tab" type="button" data-mode="tools" role="tab" aria-selected="false">
             Tools
+          </button>
+          <button class="mode-tab" type="button" data-mode="apk" role="tab" aria-selected="false">
+            APK
           </button>
         </div>
         <div class="mode-bar-right">
@@ -72,6 +75,10 @@
 
       <div class="mode-body tools-mode" id="mode-tools" hidden>
         <div class="tools-shell-host" id="tools-shell"></div>
+      </div>
+
+      <div class="mode-body apk-mode" id="mode-apk" hidden>
+        <div class="apk-shell-host" id="apk-shell"></div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>

@@ -1,10 +1,11 @@
 # @bear1210/zippy
 
-Tauri 2 desktop tool with three modes:
+Tauri 2 desktop tool with four modes:
 
 - **Git** — multi-repo branch management + per-repo identity / SSH profiles (GitSwitch-compatible config at `~/.gitswitch/config.json`)
 - **Inspector** — mobile app debug data (MMKV / SQLite / network / perf)
 - **Tools** — adb / iOS Simulator shortcuts (devices, ports, capture, app, media, env, logs)
+- **APK** — local APK / AAB playground (unpack, 16 KB check, signing, Manifest, resources, size / DEX / obfuscation analysis)
 
 Full feature guide (EN / 中文): [docs Zippy page](https://tonychan-hub.github.io/kippy/guide/zippy).
 
@@ -86,6 +87,20 @@ No fetch / push / create / delete branch. Does not change global `~/.gitconfig`.
 | Media / URL | Import gallery media, open deeplinks, type text (Android) |
 | Env | Permissions, GPS location, light/dark appearance |
 | Logs | Stream `logcat` / `log stream` with Start / Stop |
+
+### APK Playground
+
+Drop or open a local `.apk` / `.aab` / `.xapk` / `.apkm` (no device / probe required). Walkthrough: [APK Playground usage](../../docs/zh/blog/zippy-apk-playground.md) (中文) / [EN](../../docs/blog/zippy-apk-playground.md).
+
+| Tab | Role |
+| --- | ---- |
+| Overview | Package summary + quick metrics (obfuscation / shrink / DEX score / ZIP shrink) |
+| Size | Category size share, DEX optimization, obfuscation %, shrink %, top entries |
+| 16 KB | ELF `p_align` + ZIP STORED offset checks for `arm64-v8a` / `x86_64` |
+| Signing | v1–v3.1 schemes and certificate fingerprints (AAB: JAR/v1 detection) |
+| Manifest | Decoded `AndroidManifest.xml` (binary AXML or AAB protobuf), permissions, components |
+| Resources / Files | Browse `assets` / `res/raw` / `lib` / `dex` / `META-INF`, preview text & images |
+| Unpack | Extract the archive to a chosen folder |
 
 ## Connect to a mobile probe
 

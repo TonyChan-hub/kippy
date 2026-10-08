@@ -1,6 +1,6 @@
 # Zippy inspector
 
-Zippy is a **Tauri 2** desktop app with three top-level modes: **Git** (multi-repo + SSH profiles), **Inspector** (mobile debug data), and **Tools** (adb / iOS Simulator shortcuts). It ships via **GitHub Releases**, not npm.
+Zippy is a **Tauri 2** desktop app with four top-level modes: **Git** (multi-repo + SSH profiles), **Inspector** (mobile debug data), **Tools** (adb / iOS Simulator shortcuts), and **APK** (local package playground). It ships via **GitHub Releases**, not npm.
 
 <ZippyDownload locale="en" />
 
@@ -69,6 +69,30 @@ Requires Android platform-tools (`adb`, or `ANDROID_HOME`) and/or Xcode (`xcrun`
 
 Typical USB Android flow: **Tools → Forward** → **Inspector → Connect** to `127.0.0.1:9876`. For Metro on device, use **Reverse** (default `8081`).
 
+### APK Playground {#apk-playground}
+
+Offline analysis for local Android packages — no probe or device required. Drag-and-drop or open `.apk` / `.aab` / `.xapk` / `.apkm`.
+
+Step-by-step usage and a pre-release checklist: [Using Zippy’s APK Playground](/blog/zippy-apk-playground).
+
+| Tab | What you get |
+| --- | ------------ |
+| **Overview** | Package / version / SDK / ABI summary, plus quick metrics for obfuscation %, shrink %, DEX optimization score, and ZIP shrink |
+| **Size** | Size share by category (DEX, native, `res`, assets, `resources.arsc`, Manifest, META-INF, other); install vs download size; top entries by size |
+| **Size → DEX** | Per-DEX class / method / field / string counts; debug-info presence; optimization score (stripped debug + minify signals) |
+| **Size → Obfuscation / Shrink** | Class-name obfuscation % (ProGuard/R8-style short names); ZIP shrink %; code shrink hint %; combined shrink % |
+| **16 KB** | 16 KB page-size compatibility: ELF `PT_LOAD p_align ≥ 16384` and ZIP STORED data-offset alignment for `arm64-v8a` / `x86_64` |
+| **Signing** | Signing schemes (v1 / v2 / v3 / v3.1 …) and certificate subject / fingerprints. AAB mainly surfaces JAR / v1 from `META-INF` |
+| **Manifest** | Human-readable Manifest (APK binary AXML or AAB protobuf `XmlNode`), permissions, activities / services / receivers / providers |
+| **Resources / Files** | Browse `assets`, `res/raw`, other `res`, `lib`, `dex`, `META-INF`; preview text and images. Binary Manifest entries are decoded (not shown as mojibake) |
+| **Unpack** | Extract the whole archive to a chosen directory |
+
+Notes:
+
+- AAB modules (e.g. `base`, feature splits) appear in Overview.
+- Obfuscation / shrink figures are **heuristic estimates** from DEX descriptors and ZIP compression — not a substitute for mapping files or Play Console size reports.
+- 16 KB checks focus on 64-bit ABIs; apps with no native libs are treated as compatible.
+
 ## Prerequisites
 
 - Node.js 20+
@@ -76,6 +100,7 @@ Typical USB Android flow: **Tools → Forward** → **Inspector → Connect** to
 - System `git` (Git mode)
 - `adb` / Xcode (Tools mode, optional until used)
 - macOS (primary target)
+- No extra Android SDK tools required for APK mode (analysis is pure Rust)
 
 ## Develop {#develop}
 

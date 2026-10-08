@@ -10,9 +10,10 @@ import {
 } from './panels/index';
 import { mountGitPanel, type GitController } from './panels/git';
 import { mountToolsPanel, type ToolsController } from './panels/tools';
+import { mountApkPanel, type ApkController } from './panels/apk';
 import { zippy } from './lib/zippy';
 
-type AppMode = 'git' | 'inspector' | 'tools';
+type AppMode = 'git' | 'inspector' | 'tools' | 'apk';
 
 const panels: Record<string, { title: string; desc: string }> = {
   device: {
@@ -48,8 +49,10 @@ const metaEl = document.getElementById('runtime-meta');
 const modeInspectorEl = document.getElementById('mode-inspector');
 const modeGitEl = document.getElementById('mode-git');
 const modeToolsEl = document.getElementById('mode-tools');
+const modeApkEl = document.getElementById('mode-apk');
 const gitShellEl = document.getElementById('git-shell');
 const toolsShellEl = document.getElementById('tools-shell');
+const apkShellEl = document.getElementById('apk-shell');
 const navItems = document.querySelectorAll<HTMLButtonElement>('.nav-item');
 const modeTabs = document.querySelectorAll<HTMLButtonElement>('.mode-tab');
 
@@ -83,6 +86,8 @@ let gitController: GitController | null = null;
 let gitBootstrapped = false;
 let toolsController: ToolsController | null = null;
 let toolsBootstrapped = false;
+let apkController: ApkController | null = null;
+let apkBootstrapped = false;
 
 function errorMessage(error: unknown): string {
   if (error instanceof Error) {
@@ -274,6 +279,7 @@ function setMode(mode: AppMode): void {
   if (modeInspectorEl) modeInspectorEl.hidden = mode !== 'inspector';
   if (modeGitEl) modeGitEl.hidden = mode !== 'git';
   if (modeToolsEl) modeToolsEl.hidden = mode !== 'tools';
+  if (modeApkEl) modeApkEl.hidden = mode !== 'apk';
   if (statusWrapEl) statusWrapEl.hidden = mode !== 'inspector';
 
   if (mode === 'git') {
@@ -295,6 +301,16 @@ function setMode(mode: AppMode): void {
       void toolsController.bootstrap();
     } else {
       toolsController?.render();
+    }
+  } else if (mode === 'apk') {
+    if (apkShellEl && !apkController) {
+      apkController = mountApkPanel(apkShellEl);
+    }
+    if (apkController && !apkBootstrapped) {
+      apkBootstrapped = true;
+      void apkController.bootstrap();
+    } else {
+      apkController?.render();
     }
   } else {
     render();

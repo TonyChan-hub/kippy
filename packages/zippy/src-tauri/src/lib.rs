@@ -1,3 +1,7 @@
+mod aab;
+mod apk;
+mod apk_analytics;
+mod apk_commands;
 mod commands;
 mod git;
 mod git_commands;
@@ -81,6 +85,9 @@ pub fn run() {
             tools_commands::tools_log_stop,
             tools_commands::tools_record_start,
             tools_commands::tools_record_stop,
+            apk_commands::apk_analyze,
+            apk_commands::apk_unpack,
+            apk_commands::apk_read_entry,
         ])
         .setup(|app| {
             if cfg!(dev) {
