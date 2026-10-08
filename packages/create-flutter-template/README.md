@@ -34,7 +34,7 @@ npm run create-flutter-template -- myFlutterApp --org=com.example
 ## CLI
 
 ```text
-create-flutter-template <project-name> [--org=com.example] [--skip-install]
+create-flutter-template <project-name> [--org=com.example] [--skip-install] [--modules=permission] [--preset=media]
 ```
 
 | Argument / flag | Description |
@@ -42,6 +42,10 @@ create-flutter-template <project-name> [--org=com.example] [--skip-install]
 | `<project-name>` | Output directory name. Also used to derive the Dart package name (`snake_case`) and display name. |
 | `--org=<reverse-domain>` | Organization for Android applicationId / iOS bundle id prefix. Default: `com.example`. |
 | `--skip-install` | Skip `flutter pub get`, `flutter gen-l10n`, and `npm install` (husky / commitlint). |
+| `--modules=<ids>` | Comma-separated NativeKit modules (e.g. `permission`). Default: none |
+| `--preset=media` | Enables NativeKit `permission` + media Info.plist / Manifest keys |
+
+NativeKit API: [docs/guide/native-kit/](../../docs/guide/native-kit/).
 
 ### What the CLI does
 
@@ -50,7 +54,8 @@ create-flutter-template <project-name> [--org=com.example] [--skip-install]
 3. Rewrites the placeholder package name `flutter_template_app` → your Dart package name
 4. Injects camera / photo usage strings (iOS) and camera-related permissions (Android)
 5. Injects Aliyun Maven mirrors + Tencent Gradle distribution URL into the app Android Gradle files, and patches Flutter SDK `flutter_tools/gradle` mirrors when writable (needed for `includeBuild`; re-apply after Flutter upgrades)
-6. Unless `--skip-install`: `flutter pub get` → `flutter gen-l10n` → `npm install`
+6. If `--modules` / `--preset` set: enables NativeKit (config, deps, `native_kit_flutter` package)
+7. Unless `--skip-install`: `flutter pub get` → `flutter gen-l10n` → `npm install`
 
 ## What the scaffold includes
 

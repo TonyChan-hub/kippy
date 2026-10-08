@@ -29,7 +29,8 @@ export default defineConfig({
           { text: 'Guide', link: '/guide/getting-started' },
           { text: 'React Native', link: '/guide/create-rn' },
           { text: 'Flutter', link: '/guide/create-flutter' },
-          { text: 'Environment', link: '/guide/env-setup' },
+          { text: 'NativeKit', link: '/guide/native-kit/' },
+          { text: 'Blog', link: '/blog/' },
           { text: 'Download Zippy', link: '/guide/zippy#download' },
           {
             text: 'npm',
@@ -39,35 +40,62 @@ export default defineConfig({
             ],
           },
         ],
-        sidebar: [
-          {
-            text: 'Introduction',
-            items: [
-              { text: 'What is AppSetup?', link: '/guide/getting-started' },
-              { text: 'Packages', link: '/guide/packages' },
-            ],
-          },
-          {
-            text: 'CLI',
-            items: [
-              { text: 'Create React Native app', link: '/guide/create-rn' },
-              { text: 'Create Flutter app', link: '/guide/create-flutter' },
-              { text: 'Setup Android / iOS env', link: '/guide/env-setup' },
-              { text: 'Check mobile environment', link: '/guide/check-env' },
-            ],
-          },
-          {
-            text: 'Templates',
-            items: [
-              { text: 'RN template features', link: '/guide/rn-template' },
-              { text: 'Flutter template features', link: '/guide/flutter-template' },
-            ],
-          },
-          {
-            text: 'Toolkit',
-            items: [{ text: 'Zippy inspector', link: '/guide/zippy' }],
-          },
-        ],
+        sidebar: {
+          '/guide/': [
+            {
+              text: 'Introduction',
+              items: [
+                { text: 'What is AppSetup?', link: '/guide/getting-started' },
+                { text: 'Packages', link: '/guide/packages' },
+              ],
+            },
+            {
+              text: 'CLI',
+              items: [
+                { text: 'Create React Native app', link: '/guide/create-rn' },
+                { text: 'Create Flutter app', link: '/guide/create-flutter' },
+                { text: 'Setup Android / iOS env', link: '/guide/env-setup' },
+                { text: 'Check mobile environment', link: '/guide/check-env' },
+              ],
+            },
+            {
+              text: 'Templates',
+              items: [
+                { text: 'RN template features', link: '/guide/rn-template' },
+                { text: 'Flutter template features', link: '/guide/flutter-template' },
+              ],
+            },
+            {
+              text: 'Toolkit',
+              items: [
+                { text: 'Zippy inspector', link: '/guide/zippy' },
+              ],
+            },
+            {
+              text: 'NativeKit (Beta)',
+              collapsed: false,
+              items: [
+                { text: 'Overview', link: '/guide/native-kit/' },
+                { text: 'Install', link: '/guide/native-kit/install' },
+                { text: 'Permission API', link: '/guide/native-kit/permission' },
+                { text: 'Device API', link: '/guide/native-kit/device' },
+                { text: 'Platform declarations', link: '/guide/native-kit/platform' },
+              ],
+            },
+          ],
+          '/blog/': [
+            {
+              text: 'Blog',
+              items: [
+                { text: 'All posts', link: '/blog/' },
+                {
+                  text: 'NativeKit: permission facade',
+                  link: '/blog/native-kit-permissions',
+                },
+              ],
+            },
+          ],
+        },
         editLink: {
           pattern: `${repo}/edit/main/docs/:path`,
           text: 'Edit this page on GitHub',
@@ -88,7 +116,8 @@ export default defineConfig({
           { text: '指南', link: '/zh/guide/getting-started' },
           { text: 'React Native', link: '/zh/guide/create-rn' },
           { text: 'Flutter', link: '/zh/guide/create-flutter' },
-          { text: '环境配置', link: '/zh/guide/env-setup' },
+          { text: 'NativeKit', link: '/zh/guide/native-kit/' },
+          { text: '博客', link: '/zh/blog/' },
           { text: '下载 Zippy', link: '/zh/guide/zippy#download' },
           {
             text: 'npm',
@@ -98,35 +127,62 @@ export default defineConfig({
             ],
           },
         ],
-        sidebar: [
-          {
-            text: '介绍',
-            items: [
-              { text: '什么是 AppSetup？', link: '/zh/guide/getting-started' },
-              { text: '包一览', link: '/zh/guide/packages' },
-            ],
-          },
-          {
-            text: '命令行',
-            items: [
-              { text: '创建 RN 项目', link: '/zh/guide/create-rn' },
-              { text: '创建 Flutter 项目', link: '/zh/guide/create-flutter' },
-              { text: '配置 Android / iOS 环境', link: '/zh/guide/env-setup' },
-              { text: '检查移动端环境', link: '/zh/guide/check-env' },
-            ],
-          },
-          {
-            text: '模板能力',
-            items: [
-              { text: 'RN 模板功能', link: '/zh/guide/rn-template' },
-              { text: 'Flutter 模板功能', link: '/zh/guide/flutter-template' },
-            ],
-          },
-          {
-            text: '工具',
-            items: [{ text: 'Zippy 调试器', link: '/zh/guide/zippy' }],
-          },
-        ],
+        sidebar: {
+          '/zh/guide/': [
+            {
+              text: '介绍',
+              items: [
+                { text: '什么是 AppSetup？', link: '/zh/guide/getting-started' },
+                { text: '包一览', link: '/zh/guide/packages' },
+              ],
+            },
+            {
+              text: '命令行',
+              items: [
+                { text: '创建 RN 项目', link: '/zh/guide/create-rn' },
+                { text: '创建 Flutter 项目', link: '/zh/guide/create-flutter' },
+                { text: '配置 Android / iOS 环境', link: '/zh/guide/env-setup' },
+                { text: '检查移动端环境', link: '/zh/guide/check-env' },
+              ],
+            },
+            {
+              text: '模板能力',
+              items: [
+                { text: 'RN 模板功能', link: '/zh/guide/rn-template' },
+                { text: 'Flutter 模板功能', link: '/zh/guide/flutter-template' },
+              ],
+            },
+            {
+              text: '工具',
+              items: [
+                { text: 'Zippy 调试器', link: '/zh/guide/zippy' },
+              ],
+            },
+            {
+              text: 'NativeKit（Beta）',
+              collapsed: false,
+              items: [
+                { text: '概览', link: '/zh/guide/native-kit/' },
+                { text: '接入', link: '/zh/guide/native-kit/install' },
+                { text: 'Permission API', link: '/zh/guide/native-kit/permission' },
+                { text: 'Device API', link: '/zh/guide/native-kit/device' },
+                { text: '平台声明', link: '/zh/guide/native-kit/platform' },
+              ],
+            },
+          ],
+          '/zh/blog/': [
+            {
+              text: '技术博客',
+              items: [
+                { text: '全部文章', link: '/zh/blog/' },
+                {
+                  text: 'NativeKit：双端权限门面',
+                  link: '/zh/blog/native-kit-permissions',
+                },
+              ],
+            },
+          ],
+        },
         editLink: {
           pattern: `${repo}/edit/main/docs/:path`,
           text: '在 GitHub 上编辑此页',

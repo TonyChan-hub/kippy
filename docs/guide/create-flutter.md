@@ -17,7 +17,7 @@ npx -p @bear1210/create-rn-template check-mobile-env --strict-flutter
 ## Usage
 
 ```bash
-npx @bear1210/create-flutter-template <project-name> [--org=com.example] [--skip-install]
+npx @bear1210/create-flutter-template <project-name> [--org=com.example] [--skip-install] [--modules=permission] [--preset=media]
 ```
 
 ### Example
@@ -35,6 +35,10 @@ flutter run
 | `<project-name>` | Output directory; also derives Dart package name (`snake_case`) |
 | `--org=<reverse-domain>` | Android applicationId / iOS bundle id prefix (default `com.example`) |
 | `--skip-install` | Skip `flutter pub get`, `gen-l10n`, and npm tooling install |
+| `--modules=<ids>` | Comma-separated NativeKit modules (e.g. `permission`). Default: none |
+| `--preset=media` | Enables NativeKit `permission` + media-related Info.plist / Manifest keys |
+
+See [NativeKit (Beta)](./native-kit) for API call examples (`NativeKit.permission.ensure`, etc.). NativeKit is experimental.
 
 ## What the CLI does
 
@@ -43,6 +47,7 @@ flutter run
 3. Rewrites placeholder package name → your Dart package name
 4. Injects camera / photo permission strings
 5. Injects Aliyun Maven mirrors + Tencent Gradle distribution URL, and patches Flutter SDK `flutter_tools/gradle` when writable (avoids Google/Gradle TLS failures on restricted networks)
-6. Unless `--skip-install`: `flutter pub get` → `flutter gen-l10n` → `npm install`
+6. If `--modules` / `--preset` set: enables NativeKit (config, deps, platform declarations) — see [NativeKit](./native-kit)
+7. Unless `--skip-install`: `flutter pub get` → `flutter gen-l10n` → `npm install`
 
 See [Flutter template features](./flutter-template) for the full scaffold.

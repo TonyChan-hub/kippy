@@ -14,12 +14,14 @@
     "scripts"
   ],
   "scripts": {
-    "prepack": "bash scripts/sync-vendor-zippy.sh",
+    "prepack": "bash scripts/sync-vendor-zippy.sh && bash scripts/sync-vendor-native-kit.sh",
     "sync-vendor-zippy": "bash scripts/sync-vendor-zippy.sh",
+    "sync-vendor-native-kit": "bash scripts/sync-vendor-native-kit.sh",
     "lint": "node -e \"console.log('no lint configured')\"",
     "test": "node -e \"console.log('no tests yet')\""
   },
   "dependencies": {
+    "@bear1210/native-kit": "0.0.1",
     "fs-extra": "^11.3.2"
   },
   "engines": {

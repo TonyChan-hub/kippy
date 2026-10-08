@@ -5,7 +5,7 @@ Scaffold a business-free React Native 0.81 project with TypeScript, infra module
 ## Usage
 
 ```bash
-npx @bear1210/create-rn-template <ProjectName> [--package=<id>] [--skip-install]
+npx @bear1210/create-rn-template <ProjectName> [--package=<id>] [--skip-install] [--modules=permission] [--preset=media]
 ```
 
 ### Project name rules
@@ -34,6 +34,10 @@ npm start
 | `<ProjectName>` | Output directory / app name (JS identifier only) |
 | `--package=<applicationId>` | Android applicationId when initializing |
 | `--skip-install` | Skip `npm install` in the generated app |
+| `--modules=<ids>` | Comma-separated NativeKit modules (e.g. `permission`). Default: none |
+| `--preset=media` | Enables NativeKit `permission` + media-related Info.plist / Manifest keys |
+
+See [NativeKit (Beta)](./native-kit) for API call examples (`NativeKit.permission.ensure`, etc.). NativeKit is experimental.
 
 ## From this monorepo
 
@@ -46,6 +50,7 @@ npm run create-rn-template -- MyNewApp --package=com.example.mynewapp
 
 1. Bootstraps a React Native 0.81.6 project (via RN CLI)
 2. Overlays the AppSetup `template/` (src layout, infra, configs, Cursor assets)
-3. Unless `--skip-install`, runs dependency install in the new app
+3. If `--modules` / `--preset` set: enables NativeKit (config, deps, platform declarations) — see [NativeKit](./native-kit)
+4. Unless `--skip-install`, runs dependency install in the new app
 
 See [RN template features](./rn-template) for what lands in the project.

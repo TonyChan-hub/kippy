@@ -1,0 +1,32 @@
+{
+  "name": "@bear1210/native-kit-protocol",
+  "version": "0.0.1",
+  "description": "Shared module IDs, permission kinds/statuses, and error codes for NativeKit",
+  "license": "MIT",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "constants.js",
+    "modules.js"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TonyChan-hub/AppSetup.git",
+    "directory": "packages/native-kit-protocol"
+  },
+  "keywords": [
+    "native-kit",
+    "permissions",
+    "protocol"
+  ]
+}

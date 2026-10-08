@@ -13,7 +13,7 @@
 - Dio 客户端 + token 存储 / 401 刷新拦截钩子
 - 基于 sqflite 的 `LocalLogger`（查询 / 导出 JSON·CSV）
 - Material 3 主题（Poppins）+ ScreenUtil（390×844）
-- 相机 / 相册权限助手
+- 相机 / 相册权限助手（默认 `permission_handler`；使用 `--modules=permission` / `--preset=media` 时切换为 [NativeKit](./native-kit)）
 
 ## 工程化
 
@@ -31,6 +31,7 @@
 ## 默认包含
 
 - `zippy_flutter` probe（仅 debug）— 脚手架会解压/拷贝到 `packages/zippy_flutter`；用 [Zippy](./zippy) 连接，端口 `9876`
+- 启用 NativeKit 模块时可选接入 `native_kit_flutter`（见 [NativeKit](./native-kit)）
 
 ## 生成结构
 

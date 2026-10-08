@@ -8,6 +8,10 @@
 | `@bear1210/zippy-probe-protocol` | npm | 共享 JSON probe 协议 |
 | [`@bear1210/zippy-rn`](https://www.npmjs.com/package/@bear1210/zippy-rn) | npm | React Native 调试 probe SDK（[README](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_rn)） |
 | `zippy_flutter` | zip / path | Flutter 调试 probe SDK（[README](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_flutter)） |
+| [`@bear1210/native-kit-protocol`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native-kit-protocol) | npm | NativeKit **（Beta）** 模块 ID / 权限 kind / recipe |
+| [`@bear1210/native-kit-rn`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native_kit_rn) | npm | NativeKit **（Beta）** RN 门面 + 桥（[指南](/zh/guide/native-kit/)） |
+| `native_kit_flutter` | zip / path | NativeKit **（Beta）** Flutter 门面 + plugin |
+| [`@bear1210/native-kit`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native-kit-cli) | npm | NativeKit **（Beta）** `add` / `remove` / `list` CLI |
 
 根目录 `package.json` 为 private，仅用于编排 workspaces。发版请在对应包上 bump 版本，不要改根包版本。
 
@@ -21,6 +25,11 @@ packages/
   zippy-probe-protocol/     # 共享 probe 协议
   zippy_rn/                 # RN probe SDK（npm）
   zippy_flutter/            # Flutter probe SDK（zip / path）
+  native-kit-protocol/      # NativeKit 共享常量
+  native_kit/               # Kotlin / Swift 模块源码
+  native_kit_rn/            # RN NativeKit SDK（npm）
+  native_kit_flutter/       # Flutter NativeKit SDK（zip / path）
+  native-kit-cli/           # native-kit add/remove CLI
 ```
 
 ## 本地开发

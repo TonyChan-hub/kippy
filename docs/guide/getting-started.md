@@ -12,6 +12,7 @@ AppSetup is a monorepo of **business-free** mobile scaffolds and macOS toolchain
 | iOS CocoaPods toolchain (macOS) | `npx -p @bear1210/create-rn-template setup-rn-ios-env` |
 | Diagnose the machine | `npx -p @bear1210/create-rn-template check-mobile-env` |
 | Zippy desktop (Git / Inspector / Tools) | [Download Zippy](./zippy#download) — feature guide on the [Zippy page](./zippy); connect Inspector to the scaffold probe on port `9876` |
+| NativeKit **(Beta)** — in-app permissions API | Opt in with `--modules=permission` / `--preset=media`, or `npx @bear1210/native-kit add permission` — [NativeKit guide](./native-kit) (experimental) |
 
 ## Requirements
 
@@ -30,4 +31,4 @@ npx @bear1210/create-flutter-template myFlutterApp --org=com.example
 cd myFlutterApp && flutter run
 ```
 
-Next: [Packages](./packages) · [Create RN app](./create-rn) · [Create Flutter app](./create-flutter) · [Zippy](./zippy)
+Next: [Packages](./packages) · [Create RN app](./create-rn) · [Create Flutter app](./create-flutter) · [Zippy](./zippy) · [NativeKit](./native-kit)

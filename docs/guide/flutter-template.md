@@ -13,7 +13,7 @@ What `@bear1210/create-flutter-template` puts into a new app.
 - Dio client + auth token store / 401 refresh interceptor hook
 - sqflite-backed `LocalLogger` (query / export JSON·CSV)
 - Material 3 theme (Poppins) + ScreenUtil (390×844)
-- Camera / photo-library permission helpers
+- Camera / photo-library permission helpers (`permission_handler` by default; switches to [NativeKit](./native-kit) when `--modules=permission` / `--preset=media`)
 
 ## Engineering
 
@@ -31,6 +31,7 @@ What `@bear1210/create-flutter-template` puts into a new app.
 ## Included by default
 
 - `zippy_flutter` probe (debug only) — scaffold copies/unpacks into `packages/zippy_flutter`; connect from [Zippy](./zippy) on port `9876`
+- Optional `native_kit_flutter` when NativeKit modules are enabled (see [NativeKit](./native-kit))
 
 ## Generated layout
 

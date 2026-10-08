@@ -4,6 +4,7 @@ import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import fs from 'fs-extra';
+import { applyModules, resolveModulesFromFlags } from '@bear1210/native-kit';
 
 const PACKAGE_PLACEHOLDER = 'flutter_template_app';
 const DISPLAY_PLACEHOLDER = 'Flutter Template';
@@ -33,7 +34,14 @@ function parseArgs(argv) {
   const skipInstall = flags.includes('--skip-install');
   const orgFlag = flags.find((flag) => flag.startsWith('--org='));
   const org = orgFlag ? orgFlag.replace('--org=', '') : 'com.example';
-  return { projectName, skipInstall, org };
+  const modulesFlag = flags.find((flag) => flag.startsWith('--modules='));
+  const presetFlag = flags.find((flag) => flag.startsWith('--preset='));
+  /** @type {string[]} */
+  const moduleTokens = [];
+  if (modulesFlag) moduleTokens.push(modulesFlag.replace('--modules=', ''));
+  if (presetFlag) moduleTokens.push(`preset:${presetFlag.replace('--preset=', '')}`);
+  const modules = resolveModulesFromFlags(moduleTokens);
+  return { projectName, skipInstall, org, modules };
 }
 
 /** Directory / CLI name → valid Dart package name (snake_case). */
@@ -308,6 +316,71 @@ async function ensureAndroidMavenMirrors(targetDir) {
 }
 
 /**
+ * Install native_kit_flutter into <app>/packages/native_kit_flutter.
+ * Prefer monorepo source when developing; otherwise unpack vendor/*.zip shipped with the CLI.
+ */
+async function installNativeKitFlutter(rootDir, targetDir) {
+  const dest = path.join(targetDir, 'packages', 'native_kit_flutter');
+  await fs.remove(dest);
+  await fs.ensureDir(path.join(targetDir, 'packages'));
+
+  const monorepoSource = path.resolve(rootDir, '../native_kit_flutter');
+  const monorepoPubspec = path.join(monorepoSource, 'pubspec.yaml');
+  if (await fs.pathExists(monorepoPubspec)) {
+    console.log('Installing native_kit_flutter (monorepo copy)...');
+    await fs.copy(monorepoSource, dest, {
+      filter: (src) => {
+        const rel = path.relative(monorepoSource, src).split(path.sep).join('/');
+        if (!rel) return true;
+        return ![
+          '.dart_tool',
+          'build',
+          'example',
+          'dist',
+          'scripts',
+          '.idea',
+          'pubspec.lock',
+        ].some((entry) => rel === entry || rel.startsWith(`${entry}/`));
+      },
+    });
+    return;
+  }
+
+  const vendorDir = path.join(rootDir, 'vendor');
+  if (!(await fs.pathExists(vendorDir))) {
+    throw new Error(
+      'native_kit_flutter vendor zip missing. Run: bash packages/create-flutter-template/scripts/sync-vendor-native-kit.sh'
+    );
+  }
+  const zips = (await fs.readdir(vendorDir)).filter(
+    (name) => name.startsWith('native_kit_flutter-') && name.endsWith('.zip')
+  );
+  if (zips.length === 0) {
+    throw new Error(
+      'No native_kit_flutter-*.zip in vendor/. Run sync-vendor-native-kit.sh before publish.'
+    );
+  }
+  zips.sort();
+  const zipPath = path.join(vendorDir, zips[zips.length - 1]);
+  console.log(`Installing native_kit_flutter from ${path.basename(zipPath)}...`);
+
+  if (!which('unzip')) {
+    throw new Error('unzip is required to extract native_kit_flutter vendor zip');
+  }
+  const stage = await fs.mkdtemp(path.join(targetDir, '.native-kit-'));
+  try {
+    run('unzip', ['-qo', zipPath, '-d', stage], process.cwd());
+    const extracted = path.join(stage, 'native_kit_flutter');
+    if (!(await fs.pathExists(extracted))) {
+      throw new Error(`Unexpected zip layout in ${zipPath}`);
+    }
+    await fs.move(extracted, dest);
+  } finally {
+    await fs.remove(stage);
+  }
+}
+
+/**
  * Install zippy_flutter into <app>/packages/zippy_flutter.
  * Prefer monorepo source when developing; otherwise unpack vendor/*.zip shipped with the CLI.
  */
@@ -373,10 +446,10 @@ async function installZippyFlutter(rootDir, targetDir) {
 }
 
 async function main() {
-  const { projectName, skipInstall, org } = parseArgs(process.argv.slice(2));
+  const { projectName, skipInstall, org, modules } = parseArgs(process.argv.slice(2));
   if (!projectName) {
     console.error(
-      'Usage: create-flutter-template <project-name> [--org=com.example] [--skip-install]'
+      'Usage: create-flutter-template <project-name> [--org=com.example] [--skip-install] [--modules=permission] [--preset=media]'
     );
     process.exit(1);
   }
@@ -446,6 +519,19 @@ async function main() {
   await ensureAndroidMavenMirrors(targetDir);
   await installZippyFlutter(rootDir, targetDir);
 
+  if (modules.length > 0) {
+    console.log(`Enabling NativeKit modules: ${modules.join(', ')}`);
+    await applyModules({
+      projectDir: targetDir,
+      modules,
+      platform: 'flutter',
+      displayName,
+      installFlutterPackage: async () => {
+        await installNativeKitFlutter(rootDir, targetDir);
+      },
+    });
+  }
+
   // flutter create already wrote a counter demo; remove leftover test that imports it.
   const widgetTest = path.join(targetDir, 'test', 'widget_test.dart');
   if (await fs.pathExists(widgetTest)) {
@@ -472,6 +558,9 @@ async function main() {
   console.log('\nDone.');
   console.log(`cd ${projectName}`);
   console.log('flutter run');
+  if (modules.length > 0) {
+    console.log('NativeKit: see https://tonychan-hub.github.io/AppSetup/guide/native-kit');
+  }
 }
 
 main().catch((error) => {

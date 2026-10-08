@@ -27,6 +27,10 @@ npm run docs:build    # static site → docs/.vitepress/dist
 | [`@bear1210/zippy-probe-protocol`](./packages/zippy-probe-protocol) | published (shared probe protocol) | `packages/zippy-probe-protocol/package.json` |
 | [`@bear1210/zippy-rn`](./packages/zippy_rn) | published (RN probe SDK) | `packages/zippy_rn/package.json` |
 | [`zippy_flutter`](./packages/zippy_flutter) | Flutter probe SDK (zip / path) | `packages/zippy_flutter/pubspec.yaml` |
+| [`@bear1210/native-kit-protocol`](./packages/native-kit-protocol) | published | `packages/native-kit-protocol/package.json` |
+| [`@bear1210/native-kit-rn`](./packages/native_kit_rn) | published (NativeKit RN SDK) | `packages/native_kit_rn/package.json` |
+| [`native_kit_flutter`](./packages/native_kit_flutter) | Flutter NativeKit SDK (zip / path) | `packages/native_kit_flutter/pubspec.yaml` |
+| [`@bear1210/native-kit`](./packages/native-kit-cli) | published (add/remove modules CLI) | `packages/native-kit-cli/package.json` |
 
 Root `package.json` is **private** (`@bear1210/app-setup@0.0.0`) and only orchestrates workspaces. Bump and publish npm versions on the packages that map to npm libraries—not the repo root. Zippy is private and ships via GitHub Releases (`zippy-release.yml`).
 
@@ -59,6 +63,11 @@ packages/
   zippy-probe-protocol/     # Shared JSON probe protocol
   zippy_rn/                 # React Native debug probe SDK (npm)
   zippy_flutter/            # Flutter debug probe SDK (zip / path)
+  native-kit-protocol/      # NativeKit shared constants / recipes
+  native_kit/               # Kotlin / Swift module sources
+  native_kit_rn/            # RN NativeKit SDK (npm)
+  native_kit_flutter/       # Flutter NativeKit SDK (zip / path)
+  native-kit-cli/           # native-kit add/remove CLI
 ```
 
 ## Zippy (desktop)
@@ -100,6 +109,10 @@ Optional flags:
 
 - `--skip-install` skip npm install in generated app
 - `--package=<applicationId>` set Android package name when initializing app
+- `--modules=permission` enable NativeKit modules (comma-separated)
+- `--preset=media` enable NativeKit `permission` + media Info.plist / Manifest keys
+
+NativeKit API guide: [docs/guide/native-kit/](./docs/guide/native-kit/).
 
 ### What the RN scaffold includes
 
@@ -122,8 +135,10 @@ Optional flags:
 
 - `--skip-install` skip `flutter pub get` / `gen-l10n` / npm tooling install
 - `--org=<reverse-domain>` set Android/iOS organization (default `com.example`)
+- `--modules=permission` enable NativeKit modules (comma-separated)
+- `--preset=media` enable NativeKit `permission` + media Info.plist / Manifest keys
 
-Full CLI docs: [`packages/create-flutter-template/README.md`](./packages/create-flutter-template/README.md).
+Full CLI docs: [`packages/create-flutter-template/README.md`](./packages/create-flutter-template/README.md). NativeKit: [docs/guide/native-kit/](./docs/guide/native-kit/).
 
 ### What the Flutter scaffold includes
 

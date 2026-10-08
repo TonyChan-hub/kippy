@@ -1,0 +1,52 @@
+{
+  "name": "@bear1210/native-kit-rn",
+  "version": "0.0.1",
+  "description": "NativeKit React Native facade — modular dual-end native APIs (permission first)",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "react-native": "./src/index.ts",
+  "source": "./src/index.ts",
+  "files": [
+    "lib",
+    "src",
+    "android",
+    "ios",
+    "NativeKitRn.podspec",
+    "react-native.config.js",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@bear1210/native-kit-protocol": "0.0.1"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.73.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.4",
+    "react-native": "0.81.6",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TonyChan-hub/AppSetup.git",
+    "directory": "packages/native_kit_rn"
+  },
+  "keywords": [
+    "react-native",
+    "native-kit",
+    "permissions"
+  ]
+}

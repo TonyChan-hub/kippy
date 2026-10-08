@@ -18,6 +18,7 @@
 | MMKV | `react-native-mmkv` |
 | HTTP | 共用 `httpClient`（`__DEV__` 下挂 Zippy network） |
 | Zippy | `@bear1210/zippy-rn` — `__DEV__` 下 `start()`；注册 MMKV + SQLite（传入 App 的 `openDb`，见 [Zippy](./zippy)） |
+| NativeKit | 可选：`--modules=permission` / `--preset=media` — `NativeKit.permission.*`（见 [NativeKit](./native-kit)） |
 
 ## 工程化
 

@@ -12,6 +12,7 @@ AppSetup 是一套**无业务逻辑**的移动端脚手架与 macOS 工具链助
 | iOS CocoaPods 工具链（macOS） | `npx -p @bear1210/create-rn-template setup-rn-ios-env` |
 | 诊断本机环境 | `npx -p @bear1210/create-rn-template check-mobile-env` |
 | Zippy 桌面端（Git / Inspector / Tools） | [下载 Zippy](./zippy#download) — 功能说明见 [Zippy 文档](./zippy)；Inspector 连接脚手架 probe（端口 `9876`） |
+| NativeKit **（Beta）** — App 内权限等原生 API | 创建时加 `--modules=permission` / `--preset=media`，或事后 `npx @bear1210/native-kit add permission` — [NativeKit 指南](./native-kit)（实验中） |
 
 ## 环境要求
 
@@ -30,4 +31,4 @@ npx @bear1210/create-flutter-template myFlutterApp --org=com.example
 cd myFlutterApp && flutter run
 ```
 
-接下来：[包一览](./packages) · [创建 RN 项目](./create-rn) · [创建 Flutter 项目](./create-flutter) · [Zippy](./zippy)
+接下来：[包一览](./packages) · [创建 RN 项目](./create-rn) · [创建 Flutter 项目](./create-flutter) · [Zippy](./zippy) · [NativeKit](./native-kit)

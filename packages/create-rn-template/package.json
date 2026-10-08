@@ -21,6 +21,7 @@
     "test": "node -e \"console.log('no tests yet')\""
   },
   "dependencies": {
+    "@bear1210/native-kit": "0.0.1",
     "fs-extra": "^11.3.2"
   },
   "engines": {

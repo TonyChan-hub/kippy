@@ -17,7 +17,7 @@ npx -p @bear1210/create-rn-template check-mobile-env --strict-flutter
 ## 用法
 
 ```bash
-npx @bear1210/create-flutter-template <project-name> [--org=com.example] [--skip-install]
+npx @bear1210/create-flutter-template <project-name> [--org=com.example] [--skip-install] [--modules=permission] [--preset=media]
 ```
 
 ### 示例
@@ -35,6 +35,10 @@ flutter run
 | `<project-name>` | 输出目录；同时推导 Dart 包名（`snake_case`） |
 | `--org=<reverse-domain>` | Android applicationId / iOS bundle 前缀（默认 `com.example`） |
 | `--skip-install` | 跳过 `flutter pub get`、`gen-l10n` 与 npm 工具安装 |
+| `--modules=<ids>` | 逗号分隔的 NativeKit 模块（如 `permission`）。默认不启用 |
+| `--preset=media` | 启用 NativeKit `permission`，并注入媒体相关 Info.plist / Manifest |
+
+API 调用示例见 [NativeKit（Beta）](./native-kit)（`NativeKit.permission.ensure` 等）。NativeKit 仍在实验中。
 
 ## CLI 做了什么
 
@@ -43,6 +47,7 @@ flutter run
 3. 将占位包名替换为你的 Dart 包名
 4. 注入相机 / 相册权限相关文案
 5. 向 Android Gradle 注入阿里云 Maven / 腾讯云 Gradle 发行包镜像，并在可写时给 Flutter SDK 的 `flutter_tools/gradle` 打上同样镜像（`includeBuild` 需要；升级 Flutter 后可能需重新生成或手动补丁）
-6. 除非 `--skip-install`：依次 `flutter pub get` → `flutter gen-l10n` → `npm install`
+6. 若指定 `--modules` / `--preset`：启用 NativeKit（配置、依赖、平台声明）— 见 [NativeKit](./native-kit)
+7. 除非 `--skip-install`：依次 `flutter pub get` → `flutter gen-l10n` → `npm install`
 
 完整能力见 [Flutter 模板功能](./flutter-template)。

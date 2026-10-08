@@ -15,6 +15,7 @@
     "setup-rn-android-env": "npm exec -w @bear1210/create-rn-template -- setup-rn-android-env",
     "setup-rn-ios-env": "npm exec -w @bear1210/create-rn-template -- setup-rn-ios-env",
     "check-mobile-env": "npm exec -w @bear1210/create-rn-template -- check-mobile-env",
+    "native-kit": "npm exec -w @bear1210/native-kit -- native-kit",
     "zippy": "npm exec -w @bear1210/zippy -- zippy",
     "zippy:build": "npm run build -w @bear1210/zippy",
     "docs:dev": "vitepress dev docs",

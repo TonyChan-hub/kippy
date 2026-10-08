@@ -4,6 +4,7 @@ import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import fs from 'fs-extra';
+import { applyModules, resolveModulesFromFlags } from '@bear1210/native-kit';
 
 function run(command, args, cwd) {
   const result = spawnSync(command, args, {
@@ -21,7 +22,14 @@ function parseArgs(argv) {
   const skipInstall = flags.includes('--skip-install');
   const appIdFlag = flags.find((flag) => flag.startsWith('--package='));
   const packageName = appIdFlag ? appIdFlag.replace('--package=', '') : undefined;
-  return { projectName, skipInstall, packageName };
+  const modulesFlag = flags.find((flag) => flag.startsWith('--modules='));
+  const presetFlag = flags.find((flag) => flag.startsWith('--preset='));
+  /** @type {string[]} */
+  const moduleTokens = [];
+  if (modulesFlag) moduleTokens.push(modulesFlag.replace('--modules=', ''));
+  if (presetFlag) moduleTokens.push(`preset:${presetFlag.replace('--preset=', '')}`);
+  const modules = resolveModulesFromFlags(moduleTokens);
+  return { projectName, skipInstall, packageName, modules };
 }
 
 /** RN CLI requires a JS identifier — no hyphens/underscores/spaces. */
@@ -121,10 +129,10 @@ async function ensureIosPodfileCompatibility(targetDir) {
 }
 
 async function main() {
-  const { projectName, skipInstall, packageName } = parseArgs(process.argv.slice(2));
+  const { projectName, skipInstall, packageName, modules } = parseArgs(process.argv.slice(2));
   if (!projectName) {
     console.error(
-      'Usage: create-rn-template <ProjectName> [--package=com.example.app] [--skip-install]\n' +
+      'Usage: create-rn-template <ProjectName> [--package=com.example.app] [--skip-install] [--modules=permission] [--preset=media]\n' +
         '  <ProjectName> must be a JS identifier (e.g. MyNewApp). No hyphens or underscores.'
     );
     process.exit(1);
@@ -172,6 +180,16 @@ async function main() {
   });
   await ensureIosPodfileCompatibility(targetDir);
 
+  if (modules.length > 0) {
+    console.log(`Enabling NativeKit modules: ${modules.join(', ')}`);
+    await applyModules({
+      projectDir: targetDir,
+      modules,
+      platform: 'rn',
+      displayName: projectName,
+    });
+  }
+
   if (!skipInstall) {
     console.log('Installing dependencies...');
     run('npm', ['install'], targetDir);
@@ -180,6 +198,9 @@ async function main() {
   console.log('\nDone.');
   console.log(`cd ${projectName}`);
   console.log('npm run start');
+  if (modules.length > 0) {
+    console.log('NativeKit: see https://tonychan-hub.github.io/AppSetup/guide/native-kit');
+  }
 }
 
 main().catch((error) => {

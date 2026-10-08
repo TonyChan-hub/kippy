@@ -1,0 +1,40 @@
+{
+  "name": "@bear1210/native-kit",
+  "version": "0.0.1",
+  "description": "CLI to add/remove NativeKit modules in AppSetup RN and Flutter apps",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "native-kit": "bin/native-kit.mjs"
+  },
+  "exports": {
+    ".": "./lib/index.js",
+    "./apply": "./lib/apply.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "dependencies": {
+    "@bear1210/native-kit-protocol": "0.0.1",
+    "fs-extra": "^11.3.2"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TonyChan-hub/AppSetup.git",
+    "directory": "packages/native-kit-cli"
+  },
+  "keywords": [
+    "native-kit",
+    "cli",
+    "permissions",
+    "react-native",
+    "flutter"
+  ]
+}

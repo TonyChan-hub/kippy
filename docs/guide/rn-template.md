@@ -18,6 +18,7 @@ What `@bear1210/create-rn-template` puts into a new app.
 | MMKV | `react-native-mmkv` |
 | HTTP | Shared `httpClient` (fetch + Zippy network hook in `__DEV__`) |
 | Zippy | `@bear1210/zippy-rn` — `start()` in `__DEV__`; registers MMKV + SQLite with app `openDb` (see [Zippy](./zippy)) |
+| NativeKit | Opt-in via `--modules=permission` / `--preset=media` — `NativeKit.permission.*` (see [NativeKit](./native-kit)) |
 
 ## Engineering
 
