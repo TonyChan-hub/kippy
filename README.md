@@ -1,12 +1,12 @@
-# AppSetup (monorepo)
+# Kippy (monorepo)
 
 Business-free React Native / Flutter scaffolds and macOS mobile toolchain helpers.
 
-**Docs site (EN / 中文):** https://tonychan-hub.github.io/AppSetup/ — built from `docs/` and deployed by [`.github/workflows/docs.yml`](.github/workflows/docs.yml) on push to `main` via GitHub Actions Pages.
+**Docs site (EN / 中文):** https://tonychan-hub.github.io/kippy/ — built from `docs/` and deployed by [`.github/workflows/docs.yml`](.github/workflows/docs.yml) on push to `main` via GitHub Actions Pages.
 
 One-time GitHub Pages setup (required for the site URL to work):
 
-1. Open [Settings → Pages](https://github.com/TonyChan-hub/AppSetup/settings/pages)
+1. Open [Settings → Pages](https://github.com/TonyChan-hub/kippy/settings/pages)
 2. **Build and deployment → Source:** GitHub Actions
 3. Push to `main` (or run **Actions → Deploy docs → Run workflow**) to publish
 
@@ -32,7 +32,7 @@ npm run docs:build    # static site → docs/.vitepress/dist
 | [`native_kit_flutter`](./packages/native_kit_flutter) | Flutter NativeKit SDK (zip / path) | `packages/native_kit_flutter/pubspec.yaml` |
 | [`@bear1210/native-kit`](./packages/native-kit-cli) | published (add/remove modules CLI) | `packages/native-kit-cli/package.json` |
 
-Root `package.json` is **private** (`@bear1210/app-setup@0.0.0`) and only orchestrates workspaces. Bump and publish npm versions on the packages that map to npm libraries—not the repo root. Zippy is private and ships via GitHub Releases (`zippy-release.yml`).
+Root `package.json` is **private** (`@bear1210/kippy@0.0.0`) and only orchestrates workspaces. Bump and publish npm versions on the packages that map to npm libraries—not the repo root. Zippy is private and ships via GitHub Releases (`zippy-release.yml`).
 
 ```bash
 # bump CLI (example)
@@ -78,7 +78,7 @@ Tauri desktop tool with three modes:
 - **Inspector** — MMKV / SQLite / network / perf from a device probe
 - **Tools** — adb / iOS Simulator shortcuts (ports, capture, app, media, env, logs)
 
-Requires Node 20+ and a Rust stable toolchain. Packaged macOS builds ship via [GitHub Releases](https://github.com/TonyChan-hub/AppSetup/releases); download from the [docs Zippy page](https://tonychan-hub.github.io/AppSetup/guide/zippy#download).
+Requires Node 20+ and a Rust stable toolchain. Packaged macOS builds ship via [GitHub Releases](https://github.com/TonyChan-hub/kippy/releases); download from the [docs Zippy page](https://tonychan-hub.github.io/kippy/guide/zippy#download).
 
 ```bash
 npm install

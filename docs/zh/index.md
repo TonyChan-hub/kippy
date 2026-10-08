@@ -1,8 +1,8 @@
 ---
 layout: home
-title: AppSetup
+title: Kippy
 hero:
-  name: AppSetup
+  name: Kippy
   text: 少写样板，直接开工
   tagline: 一条命令生成无业务逻辑的 React Native / Flutter 脚手架，并在 macOS 上配置 Android / iOS 工具链。
   actions:
@@ -14,7 +14,7 @@ hero:
       link: /zh/guide/zippy#download
     - theme: alt
       text: GitHub
-      link: https://github.com/TonyChan-hub/AppSetup
+      link: https://github.com/TonyChan-hub/kippy
 features:
   - title: React Native 脚手架
     details: npx @bear1210/create-rn-template — RN 0.81、TypeScript、日志、i18n、SQLite、MMKV、husky 与 Cursor 规则。

@@ -1,6 +1,6 @@
-# What is AppSetup?
+# What is Kippy?
 
-AppSetup is a monorepo of **business-free** mobile scaffolds and macOS toolchain helpers. Use it when you want a production-shaped project shell without product domain code, Firebase, IAP, or OAuth credentials baked in.
+Kippy is a monorepo of **business-free** mobile scaffolds and macOS toolchain helpers. Use it when you want a production-shaped project shell without product domain code, Firebase, IAP, or OAuth credentials baked in.
 
 ## What you get
 

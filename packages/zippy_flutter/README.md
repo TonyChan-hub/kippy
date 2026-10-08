@@ -75,4 +75,4 @@ Zippy runs on the Mac and must reach the probe on the device — use `adb forwar
 
 See `example/` for a minimal demo app with SQLite seed data and sample network calls.
 
-Docs: [Zippy guide](https://tonychan-hub.github.io/AppSetup/guide/zippy).
+Docs: [Zippy guide](https://tonychan-hub.github.io/kippy/guide/zippy).

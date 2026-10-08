@@ -8,12 +8,12 @@ const props = withDefaults(
   { locale: 'en' },
 )
 
-const REPO = 'TonyChan-hub/AppSetup'
+const REPO = 'TonyChan-hub/kippy'
 const PAGES_MANIFEST_URL = `${import.meta.env.BASE_URL}downloads/manifest.json`
 const MANIFEST_URL = `https://github.com/${REPO}/releases/latest/download/download.json`
 const RELEASES_API = `https://api.github.com/repos/${REPO}/releases?per_page=20`
 const RELEASES_PAGE = `https://github.com/${REPO}/releases`
-const PAGES_DOWNLOAD_BASE = 'https://tonychan-hub.github.io/AppSetup/downloads'
+const PAGES_DOWNLOAD_BASE = 'https://tonychan-hub.github.io/kippy/downloads'
 
 type DownloadAsset = {
   name: string
@@ -118,7 +118,7 @@ function pagesUrlFor(name: string) {
 function preferPagesUrl(asset: DownloadAsset): DownloadAsset {
   const githubUrl = asset.githubUrl || asset.url
   const mirrored =
-    asset.url?.includes('/AppSetup/downloads/') || asset.url?.startsWith(PAGES_DOWNLOAD_BASE)
+    asset.url?.includes('/kippy/downloads/') || asset.url?.startsWith(PAGES_DOWNLOAD_BASE)
   return {
     ...asset,
     label: labelForArch(asset.arch || archFromName(asset.name)),

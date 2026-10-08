@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TonyChan-hub/AppSetup.git",
+    "url": "git+https://github.com/TonyChan-hub/kippy.git",
     "directory": "packages/create-flutter-template"
   },
   "keywords": [

@@ -199,7 +199,7 @@ async function main() {
   console.log(`cd ${projectName}`);
   console.log('npm run start');
   if (modules.length > 0) {
-    console.log('NativeKit: see https://tonychan-hub.github.io/AppSetup/guide/native-kit');
+    console.log('NativeKit: see https://tonychan-hub.github.io/kippy/guide/native-kit');
   }
 }
 

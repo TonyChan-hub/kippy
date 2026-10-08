@@ -6,7 +6,7 @@ Tauri 2 desktop tool with three modes:
 - **Inspector** — mobile app debug data (MMKV / SQLite / network / perf)
 - **Tools** — adb / iOS Simulator shortcuts (devices, ports, capture, app, media, env, logs)
 
-Full feature guide (EN / 中文): [docs Zippy page](https://tonychan-hub.github.io/AppSetup/guide/zippy).
+Full feature guide (EN / 中文): [docs Zippy page](https://tonychan-hub.github.io/kippy/guide/zippy).
 
 ## Prerequisites
 
@@ -108,7 +108,7 @@ See [`../zippy_flutter/README.md`](../zippy_flutter/README.md) and [`../zippy_rn
 
 Packaged macOS builds use `tauri-plugin-updater` with GitHub Releases (`zippy-v{version}` tags), `latest.json` (updater), and `download.json` (docs site download panel). Bump this package version and push to `main` to trigger [`.github/workflows/zippy-release.yml`](../../.github/workflows/zippy-release.yml).
 
-After a release, users can download the `.dmg` from the [docs Zippy page](https://tonychan-hub.github.io/AppSetup/guide/zippy#download).
+After a release, users can download the `.dmg` from the [docs Zippy page](https://tonychan-hub.github.io/kippy/guide/zippy#download).
 
 macOS builds use **ad-hoc** Apple code signing (`signingIdentity: "-"`) so Apple Silicon Gatekeeper does not show a false “damaged” dialog after download. First launch may still need **right-click → Open** (or System Settings → Privacy & Security → Open Anyway). Full Developer ID + notarization is not required for Phase 1. Updater signatures (minisign) are separate from Apple code signing.
 

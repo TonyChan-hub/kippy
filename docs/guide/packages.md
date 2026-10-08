@@ -6,12 +6,12 @@
 | [`@bear1210/create-flutter-template`](https://www.npmjs.com/package/@bear1210/create-flutter-template) | npm | Flutter scaffold CLI (embeds `zippy_flutter` vendor zip) |
 | [`@bear1210/zippy`](/guide/zippy) | GitHub Releases | Tauri desktop tool — Git / Inspector / Tools ([download](/guide/zippy#download)) |
 | `@bear1210/zippy-probe-protocol` | npm | Shared JSON probe protocol |
-| [`@bear1210/zippy-rn`](https://www.npmjs.com/package/@bear1210/zippy-rn) | npm | React Native debug probe SDK ([README](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_rn)) |
-| `zippy_flutter` | zip / path | Flutter debug probe SDK ([README](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_flutter)) |
-| [`@bear1210/native-kit-protocol`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native-kit-protocol) | npm | NativeKit **(Beta)** module IDs / permission kinds / recipes |
-| [`@bear1210/native-kit-rn`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native_kit_rn) | npm | NativeKit **(Beta)** RN facade + bridge ([guide](/guide/native-kit/)) |
+| [`@bear1210/zippy-rn`](https://www.npmjs.com/package/@bear1210/zippy-rn) | npm | React Native debug probe SDK ([README](https://github.com/TonyChan-hub/kippy/tree/main/packages/zippy_rn)) |
+| `zippy_flutter` | zip / path | Flutter debug probe SDK ([README](https://github.com/TonyChan-hub/kippy/tree/main/packages/zippy_flutter)) |
+| [`@bear1210/native-kit-protocol`](https://github.com/TonyChan-hub/kippy/tree/main/packages/native-kit-protocol) | npm | NativeKit **(Beta)** module IDs / permission kinds / recipes |
+| [`@bear1210/native-kit-rn`](https://github.com/TonyChan-hub/kippy/tree/main/packages/native_kit_rn) | npm | NativeKit **(Beta)** RN facade + bridge ([guide](/guide/native-kit/)) |
 | `native_kit_flutter` | zip / path | NativeKit **(Beta)** Flutter facade + plugin |
-| [`@bear1210/native-kit`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native-kit-cli) | npm | NativeKit **(Beta)** `add` / `remove` / `list` CLI |
+| [`@bear1210/native-kit`](https://github.com/TonyChan-hub/kippy/tree/main/packages/native-kit-cli) | npm | NativeKit **(Beta)** `add` / `remove` / `list` CLI |
 
 Root `package.json` is private and only orchestrates workspaces. Bump versions on the package you publish — not the repo root.
 
@@ -35,8 +35,8 @@ packages/
 ## Local development
 
 ```bash
-git clone https://github.com/TonyChan-hub/AppSetup.git
-cd AppSetup
+git clone https://github.com/TonyChan-hub/kippy.git
+cd kippy
 npm install
 
 npm run check-mobile-env

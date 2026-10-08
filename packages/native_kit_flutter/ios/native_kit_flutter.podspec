@@ -5,9 +5,9 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 NativeKit Flutter facade — modular dual-end native APIs.
                        DESC
-  s.homepage         = 'https://github.com/TonyChan-hub/AppSetup'
+  s.homepage         = 'https://github.com/TonyChan-hub/kippy'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'AppSetup' => 'dev@example.com' }
+  s.author           = { 'Kippy' => 'dev@example.com' }
   s.source           = { :path => '.' }
   s.source_files     = 'Classes/**/*'
   s.dependency 'Flutter'

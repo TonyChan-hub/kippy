@@ -1,11 +1,11 @@
 # Quick scaffold: RN + Flutter with three media permissions
 
 ::: info
-Tags: AppSetup · NativeKit · Scaffold · Permissions  
+Tags: Kippy · NativeKit · Scaffold · Permissions  
 Related: [Create RN](/guide/create-rn) · [Create Flutter](/guide/create-flutter) · [Install NativeKit](/guide/native-kit/install) · [Permission API](/guide/native-kit/permission)
 :::
 
-Most product apps only need a narrow media slice: **take a photo**, **save an image**, **pick one photo from the library**. This post shows how to get there with AppSetup scaffolds + NativeKit — without wiring Manifest / Info.plist by hand, and without asking for full album access.
+Most product apps only need a narrow media slice: **take a photo**, **save an image**, **pick one photo from the library**. This post shows how to get there with Kippy scaffolds + NativeKit — without wiring Manifest / Info.plist by hand, and without asking for full album access.
 
 ## Goal
 
@@ -141,7 +141,7 @@ Future<bool> ensurePickOnePhoto() =>
 
 ## 4. What you get vs what you still own
 
-| Layer | AppSetup / NativeKit | Your app |
+| Layer | Kippy / NativeKit | Your app |
 | ----- | -------------------- | -------- |
 | Scaffold | RN / Flutter layout, infra, tooling | Business screens |
 | Declarations | Info.plist / Manifest keys via recipe | Final copy & store forms |

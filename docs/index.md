@@ -1,8 +1,8 @@
 ---
 layout: home
-title: AppSetup
+title: Kippy
 hero:
-  name: AppSetup
+  name: Kippy
   text: Ship mobile apps without the boilerplate tax
   tagline: One CLI for React Native & Flutter scaffolds, plus macOS Android/iOS toolchain setup — business-free, production-shaped.
   actions:
@@ -14,7 +14,7 @@ hero:
       link: /guide/zippy#download
     - theme: alt
       text: GitHub
-      link: https://github.com/TonyChan-hub/AppSetup
+      link: https://github.com/TonyChan-hub/kippy
 features:
   - title: React Native scaffold
     details: npx @bear1210/create-rn-template — RN 0.81, TypeScript, logger, i18n, SQLite, MMKV, husky & Cursor rules.

@@ -14,7 +14,7 @@ React Native CLI requires a **JS identifier** (same rule as `npx @react-native-c
 
 | Allowed | Not allowed |
 | ------- | ----------- |
-| `MyNewApp`, `myNewApp`, `AppSetupRn` | `my-new-app` (kebab-case) |
+| `MyNewApp`, `myNewApp`, `KippyRn` | `my-new-app` (kebab-case) |
 | Letters + digits, **must start with a letter** | `my_new_app` (snake_case), spaces, leading digits |
 
 If the name is invalid, this CLI exits early with an error instead of failing inside RN CLI.
@@ -49,7 +49,7 @@ npm run create-rn-template -- MyNewApp --package=com.example.mynewapp
 ## What happens
 
 1. Bootstraps a React Native 0.81.6 project (via RN CLI)
-2. Overlays the AppSetup `template/` (src layout, infra, configs, Cursor assets)
+2. Overlays the Kippy `template/` (src layout, infra, configs, Cursor assets)
 3. If `--modules` / `--preset` set: enables NativeKit (config, deps, platform declarations) — see [NativeKit](./native-kit)
 4. Unless `--skip-install`, runs dependency install in the new app
 

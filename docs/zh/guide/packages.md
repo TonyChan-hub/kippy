@@ -6,12 +6,12 @@
 | [`@bear1210/create-flutter-template`](https://www.npmjs.com/package/@bear1210/create-flutter-template) | npm | Flutter 脚手架 CLI（内嵌 `zippy_flutter` vendor zip） |
 | [`@bear1210/zippy`](/zh/guide/zippy) | GitHub Releases | Tauri 桌面工具 — Git / Inspector / Tools（[下载](/zh/guide/zippy#download)） |
 | `@bear1210/zippy-probe-protocol` | npm | 共享 JSON probe 协议 |
-| [`@bear1210/zippy-rn`](https://www.npmjs.com/package/@bear1210/zippy-rn) | npm | React Native 调试 probe SDK（[README](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_rn)） |
-| `zippy_flutter` | zip / path | Flutter 调试 probe SDK（[README](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_flutter)） |
-| [`@bear1210/native-kit-protocol`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native-kit-protocol) | npm | NativeKit **（Beta）** 模块 ID / 权限 kind / recipe |
-| [`@bear1210/native-kit-rn`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native_kit_rn) | npm | NativeKit **（Beta）** RN 门面 + 桥（[指南](/zh/guide/native-kit/)） |
+| [`@bear1210/zippy-rn`](https://www.npmjs.com/package/@bear1210/zippy-rn) | npm | React Native 调试 probe SDK（[README](https://github.com/TonyChan-hub/kippy/tree/main/packages/zippy_rn)） |
+| `zippy_flutter` | zip / path | Flutter 调试 probe SDK（[README](https://github.com/TonyChan-hub/kippy/tree/main/packages/zippy_flutter)） |
+| [`@bear1210/native-kit-protocol`](https://github.com/TonyChan-hub/kippy/tree/main/packages/native-kit-protocol) | npm | NativeKit **（Beta）** 模块 ID / 权限 kind / recipe |
+| [`@bear1210/native-kit-rn`](https://github.com/TonyChan-hub/kippy/tree/main/packages/native_kit_rn) | npm | NativeKit **（Beta）** RN 门面 + 桥（[指南](/zh/guide/native-kit/)） |
 | `native_kit_flutter` | zip / path | NativeKit **（Beta）** Flutter 门面 + plugin |
-| [`@bear1210/native-kit`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native-kit-cli) | npm | NativeKit **（Beta）** `add` / `remove` / `list` CLI |
+| [`@bear1210/native-kit`](https://github.com/TonyChan-hub/kippy/tree/main/packages/native-kit-cli) | npm | NativeKit **（Beta）** `add` / `remove` / `list` CLI |
 
 根目录 `package.json` 为 private，仅用于编排 workspaces。发版请在对应包上 bump 版本，不要改根包版本。
 
@@ -35,8 +35,8 @@ packages/
 ## 本地开发
 
 ```bash
-git clone https://github.com/TonyChan-hub/AppSetup.git
-cd AppSetup
+git clone https://github.com/TonyChan-hub/kippy.git
+cd kippy
 npm install
 
 npm run check-mobile-env

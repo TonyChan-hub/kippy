@@ -114,7 +114,7 @@ adb forward tcp:9876 tcp:9876
 
 ```bash
 npm install @bear1210/zippy-rn react-native-tcp-socket buffer
-# MMKV / SQLite 面板所需 peer（AppSetup RN 模板已带）：
+# MMKV / SQLite 面板所需 peer（Kippy RN 模板已带）：
 # react-native-mmkv react-native-quick-sqlite
 ```
 
@@ -141,7 +141,7 @@ const fetchWithZippy = ZippyProbe.attachFetch(fetch);
 
 `ZippyProbe.start()` 在非 `__DEV__` 下默认 no-op，除非传入 `enabled: true`。
 
-详见 [`packages/zippy_rn/README.md`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_rn)。
+详见 [`packages/zippy_rn/README.md`](https://github.com/TonyChan-hub/kippy/tree/main/packages/zippy_rn)。
 
 ### Flutter（`zippy_flutter` zip / path）
 
@@ -160,7 +160,7 @@ ZippyProbe.registerSqliteDatabase('app.db', dbPath);
 ZippyProbe.registerMmkvStore('session', () => {'token': '…'});
 ```
 
-用 `bash packages/zippy_flutter/scripts/pack.sh` 打包，或由 `create-flutter-template` 解压 vendor zip。详见 [`packages/zippy_flutter/README.md`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_flutter)。
+用 `bash packages/zippy_flutter/scripts/pack.sh` 打包，或由 `create-flutter-template` 解压 vendor zip。详见 [`packages/zippy_flutter/README.md`](https://github.com/TonyChan-hub/kippy/tree/main/packages/zippy_flutter)。
 
 ## 发版
 

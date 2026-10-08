@@ -1,7 +1,7 @@
 name: native_kit_flutter
 description: NativeKit Flutter facade — modular dual-end native APIs (permission first).
 version: 0.0.1
-homepage: https://github.com/TonyChan-hub/AppSetup
+homepage: https://github.com/TonyChan-hub/kippy
 
 environment:
   sdk: ^3.5.0

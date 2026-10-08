@@ -1,11 +1,11 @@
 # 快速搭建：RN + Flutter，只用三种媒体权限
 
 ::: info
-标签：AppSetup · NativeKit · 脚手架 · 权限  
+标签：Kippy · NativeKit · 脚手架 · 权限  
 相关文档：[创建 RN](/zh/guide/create-rn) · [创建 Flutter](/zh/guide/create-flutter) · [接入 NativeKit](/zh/guide/native-kit/install) · [Permission API](/zh/guide/native-kit/permission)
 :::
 
-多数业务其实只需要一小段媒体能力：**拍照**、**把图片存进相册**、**从相册选一张（只读所选）**。本文用 AppSetup 脚手架 + NativeKit，走最短路径落地这两端，不必手写 Manifest / Info.plist，也不申请「读完整相册」。
+多数业务其实只需要一小段媒体能力：**拍照**、**把图片存进相册**、**从相册选一张（只读所选）**。本文用 Kippy 脚手架 + NativeKit，走最短路径落地这两端，不必手写 Manifest / Info.plist，也不申请「读完整相册」。
 
 ## 目标
 
@@ -141,7 +141,7 @@ Future<bool> ensurePickOnePhoto() =>
 
 ## 4. 框架负责什么，业务负责什么
 
-| 层级 | AppSetup / NativeKit | 你的 App |
+| 层级 | Kippy / NativeKit | 你的 App |
 | ---- | -------------------- | -------- |
 | 脚手架 | RN / Flutter 工程骨架与基建 | 业务页面 |
 | 声明 | Info.plist / Manifest recipe | 最终文案与商店表单 |

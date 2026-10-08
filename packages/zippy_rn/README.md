@@ -6,7 +6,7 @@ React Native debug probe for the Zippy desktop inspector. Starts a LAN WebSocket
 
 ```bash
 npm install @bear1210/zippy-rn react-native-tcp-socket buffer
-# peers already in AppSetup RN template:
+# peers already in Kippy RN template:
 # react-native-mmkv react-native-quick-sqlite
 cd ios && pod install
 ```
@@ -52,7 +52,7 @@ export async function getJson(url: string) {
 }
 ```
 
-AppSetup’s RN scaffold does the above in `App.tsx` automatically.
+Kippy’s RN scaffold does the above in `App.tsx` automatically.
 
 ## Connection
 
@@ -80,4 +80,4 @@ Probe URL path is always `/probe` (`ws://host:9876/probe`).
 | `ZippyProbe.registerSqliteDatabase(id, name, openDb?)` | Register DB; pass `openDb` from the app (recommended) |
 | `ZippyProbe.attachFetch(fetch?)` | Wrap fetch for Network panel |
 
-Protocol: `@bear1210/zippy-probe-protocol` (same as Flutter `zippy_flutter`). Docs: [Zippy guide](https://tonychan-hub.github.io/AppSetup/guide/zippy).
+Protocol: `@bear1210/zippy-probe-protocol` (same as Flutter `zippy_flutter`). Docs: [Zippy guide](https://tonychan-hub.github.io/kippy/guide/zippy).

@@ -120,7 +120,7 @@
 
 ## React Native
 
-包：[`@bear1210/native-kit-rn`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/native_kit_rn)。
+包：[`@bear1210/native-kit-rn`](https://github.com/TonyChan-hub/kippy/tree/main/packages/native_kit_rn)。
 
 ```ts
 import { NativeKit } from '@bear1210/native-kit-rn';

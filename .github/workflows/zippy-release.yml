@@ -261,8 +261,8 @@ jobs:
             "Automated macOS release for @bear1210/zippy v${VERSION} (Tauri)." \
             "" \
             "## Download" \
-            "- Docs: https://tonychan-hub.github.io/AppSetup/guide/zippy#download" \
-            "- Docs (中文): https://tonychan-hub.github.io/AppSetup/zh/guide/zippy#download")
+            "- Docs: https://tonychan-hub.github.io/kippy/guide/zippy#download" \
+            "- Docs (中文): https://tonychan-hub.github.io/kippy/zh/guide/zippy#download")
           if [ "${UPDATER_SIGNED:-}" != "true" ]; then
             NOTES=$(printf '%s\n' "$NOTES" "" "Note: updater signatures were not published in this build (signing key missing or invalid). DMG install still works.")
           fi

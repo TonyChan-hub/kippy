@@ -14,4 +14,4 @@ const status = await NativeKit.permission.ensure('camera');
 const info = await NativeKit.device.getInfo();
 ```
 
-Docs: [NativeKit guide](https://tonychan-hub.github.io/AppSetup/guide/native-kit) (integration + API).
+Docs: [NativeKit guide](https://tonychan-hub.github.io/kippy/guide/native-kit) (integration + API).

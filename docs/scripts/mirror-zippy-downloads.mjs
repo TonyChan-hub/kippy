@@ -11,7 +11,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const repo = process.argv[2] || process.env.GITHUB_REPOSITORY || 'TonyChan-hub/AppSetup'
+const repo = process.argv[2] || process.env.GITHUB_REPOSITORY || 'TonyChan-hub/kippy'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const outDir = path.resolve(__dirname, '../public/downloads')
 const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN || ''
@@ -39,7 +39,7 @@ function labelForArch(arch) {
 async function fetchJson(url) {
   const headers = {
     Accept: 'application/vnd.github+json',
-    'User-Agent': 'AppSetup-docs-mirror',
+    'User-Agent': 'Kippy-docs-mirror',
   }
   if (token) headers.Authorization = `Bearer ${token}`
   const response = await fetch(url, { headers })
@@ -50,7 +50,7 @@ async function fetchJson(url) {
 }
 
 async function downloadFile(url, dest) {
-  const headers = { 'User-Agent': 'AppSetup-docs-mirror', Accept: 'application/octet-stream' }
+  const headers = { 'User-Agent': 'Kippy-docs-mirror', Accept: 'application/octet-stream' }
   if (token) headers.Authorization = `Bearer ${token}`
   const response = await fetch(url, { headers, redirect: 'follow' })
   if (!response.ok) {
@@ -100,8 +100,8 @@ for (const asset of dmgs) {
       arch,
       label: labelForArch(arch),
       size,
-      // Served from GitHub Pages (site base /AppSetup/)
-      url: `https://tonychan-hub.github.io/AppSetup/downloads/${asset.name}`,
+      // Served from GitHub Pages (site base /kippy/)
+      url: `https://tonychan-hub.github.io/kippy/downloads/${asset.name}`,
       githubUrl: asset.browser_download_url,
     })
     console.log(`[mirror-zippy] ${asset.name} (${size} bytes)`)

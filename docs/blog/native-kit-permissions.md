@@ -5,7 +5,7 @@ Tags: NativeKit · Permissions · Architecture
 Related: [NativeKit overview](/guide/native-kit/) · [Permission API](/guide/native-kit/permission) · [Device API](/guide/native-kit/device)
 :::
 
-AppSetup scaffolds stay business-free, but real apps almost always need permissions and device info. NativeKit is not another mega-SDK — it is an **opt-in, modular facade**: one JS/Dart API surface, platform-specific mapping underneath.
+Kippy scaffolds stay business-free, but real apps almost always need permissions and device info. NativeKit is not another mega-SDK — it is an **opt-in, modular facade**: one JS/Dart API surface, platform-specific mapping underneath.
 
 ## Unify `kind`, not system permission names
 

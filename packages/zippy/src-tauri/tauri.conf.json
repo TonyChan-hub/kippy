@@ -46,7 +46,7 @@
     "updater": {
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI5Q0Q5NjMyNDlDMzIwQzUKUldURklNTkpNcGJOS1Y4NmVzQjZsZTlwMHFLZ3FnbENWWVFpOCtIb0ZwSm9oNkhOMU8zU3duRm8K",
       "endpoints": [
-        "https://github.com/TonyChan-hub/AppSetup/releases/latest/download/latest.json"
+        "https://github.com/TonyChan-hub/kippy/releases/latest/download/latest.json"
       ]
     }
   }

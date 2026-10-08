@@ -1,27 +1,27 @@
 import { defineConfig } from 'vitepress'
 
-const repo = 'https://github.com/TonyChan-hub/AppSetup'
+const repo = 'https://github.com/TonyChan-hub/kippy'
 const npmRn = 'https://www.npmjs.com/package/@bear1210/create-rn-template'
 const npmFlutter = 'https://www.npmjs.com/package/@bear1210/create-flutter-template'
 
 export default defineConfig({
-  title: 'AppSetup',
+  title: 'Kippy',
   description: 'Business-free React Native & Flutter scaffolds, plus macOS mobile toolchain helpers.',
-  base: '/AppSetup/',
+  base: '/kippy/',
   cleanUrls: true,
   lastUpdated: true,
   ignoreDeadLinks: true,
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/AppSetup/favicon.svg' }],
-    ['meta', { name: 'theme-color', content: '#0b1f1c' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/kippy/favicon.svg' }],
+    ['meta', { name: 'theme-color', content: '#1f3d34' }],
   ],
 
   locales: {
     root: {
       label: 'English',
       lang: 'en-US',
-      title: 'AppSetup',
+      title: 'Kippy',
       description:
         'Business-free React Native & Flutter scaffolds, plus macOS mobile toolchain helpers.',
       themeConfig: {
@@ -45,7 +45,7 @@ export default defineConfig({
             {
               text: 'Introduction',
               items: [
-                { text: 'What is AppSetup?', link: '/guide/getting-started' },
+                { text: 'What is Kippy?', link: '/guide/getting-started' },
                 { text: 'Packages', link: '/guide/packages' },
               ],
             },
@@ -106,14 +106,14 @@ export default defineConfig({
         },
         footer: {
           message: 'Released under the MIT License.',
-          copyright: 'Copyright © AppSetup contributors',
+          copyright: 'Copyright © Kippy contributors',
         },
       },
     },
     zh: {
       label: '中文',
       lang: 'zh-CN',
-      title: 'AppSetup',
+      title: 'Kippy',
       description: '无业务逻辑的 React Native / Flutter 脚手架，以及 macOS 移动端环境工具。',
       themeConfig: {
         nav: [
@@ -136,7 +136,7 @@ export default defineConfig({
             {
               text: '介绍',
               items: [
-                { text: '什么是 AppSetup？', link: '/zh/guide/getting-started' },
+                { text: '什么是 Kippy？', link: '/zh/guide/getting-started' },
                 { text: '包一览', link: '/zh/guide/packages' },
               ],
             },
@@ -197,7 +197,7 @@ export default defineConfig({
         },
         footer: {
           message: '基于 MIT 协议发布。',
-          copyright: 'Copyright © AppSetup contributors',
+          copyright: 'Copyright © Kippy contributors',
         },
         outlineTitle: '本页目录',
         lastUpdatedText: '最后更新',
@@ -215,7 +215,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: { src: '/logo.svg', alt: 'AppSetup' },
+    logo: { src: '/logo.svg', alt: 'Kippy' },
     socialLinks: [{ icon: 'github', link: repo }],
     search: {
       provider: 'local',

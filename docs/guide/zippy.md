@@ -114,7 +114,7 @@ adb forward tcp:9876 tcp:9876
 
 ```bash
 npm install @bear1210/zippy-rn react-native-tcp-socket buffer
-# peers for MMKV / SQLite panels (already in AppSetup RN template):
+# peers for MMKV / SQLite panels (already in Kippy RN template):
 # react-native-mmkv react-native-quick-sqlite
 ```
 
@@ -141,7 +141,7 @@ const fetchWithZippy = ZippyProbe.attachFetch(fetch);
 
 `ZippyProbe.start()` is a no-op outside `__DEV__` unless you pass `enabled: true`.
 
-See [`packages/zippy_rn/README.md`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_rn).
+See [`packages/zippy_rn/README.md`](https://github.com/TonyChan-hub/kippy/tree/main/packages/zippy_rn).
 
 ### Flutter (`zippy_flutter` zip / path)
 
@@ -160,7 +160,7 @@ ZippyProbe.registerSqliteDatabase('app.db', dbPath);
 ZippyProbe.registerMmkvStore('session', () => {'token': '…'});
 ```
 
-Pack with `bash packages/zippy_flutter/scripts/pack.sh`, or let `create-flutter-template` unpack its vendor zip. See [`packages/zippy_flutter/README.md`](https://github.com/TonyChan-hub/AppSetup/tree/main/packages/zippy_flutter).
+Pack with `bash packages/zippy_flutter/scripts/pack.sh`, or let `create-flutter-template` unpack its vendor zip. See [`packages/zippy_flutter/README.md`](https://github.com/TonyChan-hub/kippy/tree/main/packages/zippy_flutter).
 
 ## Releases
 

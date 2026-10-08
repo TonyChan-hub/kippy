@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 Flutter debug probe SDK for Zippy desktop inspector.
                        DESC
-  s.homepage         = 'https://github.com/TonyChan-hub/AppSetup'
+  s.homepage         = 'https://github.com/TonyChan-hub/kippy'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Bear1210' => 'dev@example.com' }
   s.source           = { :path => '.' }

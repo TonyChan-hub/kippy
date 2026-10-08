@@ -20,4 +20,4 @@ Notes:
 - `localNetwork` — iOS-focused (`granted` on Android)
 - `device.getInfo` — public fields only; not a permission
 
-See the [NativeKit guide](https://tonychan-hub.github.io/AppSetup/guide/native-kit).
+See the [NativeKit guide](https://tonychan-hub.github.io/kippy/guide/native-kit).

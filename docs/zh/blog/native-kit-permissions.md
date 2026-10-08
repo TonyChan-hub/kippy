@@ -5,7 +5,7 @@
 相关文档：[NativeKit 概览](/zh/guide/native-kit/) · [Permission API](/zh/guide/native-kit/permission) · [Device API](/zh/guide/native-kit/device)
 :::
 
-AppSetup 的脚手架刻意「无业务逻辑」，但几乎每个真实 App 都要碰权限与设备信息。NativeKit 的目标不是再做一个巨型 SDK，而是提供**可按模块启用**的双端门面：业务只记一套 API，原生层各自映射。
+Kippy 的脚手架刻意「无业务逻辑」，但几乎每个真实 App 都要碰权限与设备信息。NativeKit 的目标不是再做一个巨型 SDK，而是提供**可按模块启用**的双端门面：业务只记一套 API，原生层各自映射。
 
 ## 统一 `kind`，而不是统一系统权限名
 

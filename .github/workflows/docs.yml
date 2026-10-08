@@ -20,7 +20,7 @@ on:
 
 # Official GitHub Actions Pages deploy (more reliable than pushing gh-pages).
 # One-time setup: Settings → Pages → Build and deployment → Source: GitHub Actions
-# Site: https://tonychan-hub.github.io/AppSetup/
+# Site: https://tonychan-hub.github.io/kippy/
 permissions:
   contents: read
   pages: write

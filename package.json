@@ -1,8 +1,8 @@
 {
-  "name": "@bear1210/app-setup",
+  "name": "@bear1210/kippy",
   "version": "0.0.0",
   "private": true,
-  "description": "Monorepo for AppSetup CLI and related packages",
+  "description": "Monorepo for Kippy CLI and related packages",
   "license": "MIT",
   "workspaces": [
     "packages/*"
@@ -34,6 +34,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TonyChan-hub/AppSetup.git"
+    "url": "git+https://github.com/TonyChan-hub/kippy.git"
   }
 }
