@@ -44,6 +44,26 @@
         </div>
       </header>
 
+      <div
+        class="update-banner"
+        id="update-banner"
+        hidden
+        role="status"
+        aria-live="polite"
+      >
+        <span class="update-banner-text" id="update-banner-text"></span>
+        <div class="update-banner-actions">
+          <button class="btn" type="button" id="update-banner-check">Check</button>
+          <button class="btn" type="button" id="update-banner-download" hidden>Download</button>
+          <button class="btn primary" type="button" id="update-banner-install" hidden>
+            Restart &amp; install
+          </button>
+          <button class="btn ghost" type="button" id="update-banner-dismiss" hidden aria-label="Dismiss">
+            Dismiss
+          </button>
+        </div>
+      </div>
+
       <div class="mode-body" id="mode-inspector">
         <aside class="sidebar">
           <nav class="nav">

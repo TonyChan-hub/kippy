@@ -193,6 +193,10 @@ Pack with `bash packages/zippy_flutter/scripts/pack.sh`, or let `create-flutter-
 
 Bump `@bear1210/zippy` and push to `main` to trigger the Zippy release workflow. Packaged builds publish a `.dmg` plus `download.json` / `latest.json` to GitHub Releases; the docs site also mirrors the `.dmg` onto GitHub Pages so the download button above prefers that mirror when GitHub Releases CDN is unreachable.
 
+### In-app updates
+
+Packaged Zippy reads `https://github.com/TonyChan-hub/kippy/releases/latest/download/latest.json` via `tauri-plugin-updater`. Startup **checks only**; the banner under the mode bar lets you **Download**, then **Restart & install**. Dev mode does not auto-check. Updates need a Release that published updater signatures + `latest.json`; otherwise install the DMG from the download section above.
+
 Current macOS runners produce an **Apple Silicon (aarch64)** installer (M1–M4). If GitHub download fails, use the primary docs button, or build locally with `npm run zippy:build`.
 
 ### DMG says “damaged”?

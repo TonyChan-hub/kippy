@@ -39,6 +39,7 @@ pub fn run() {
             commands::app_get_version,
             commands::app_get_platform,
             commands::updater_check,
+            commands::updater_download,
             commands::updater_install,
             git_commands::get_config,
             git_commands::add_repo,

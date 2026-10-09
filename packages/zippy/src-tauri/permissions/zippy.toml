@@ -40,8 +40,13 @@ commands.allow = ["app_get_platform"]
 
 [[permission]]
 identifier = "allow-updater-check"
-description = "Check for and download application updates"
+description = "Check GitHub Releases for an application update (no download)"
 commands.allow = ["updater_check"]
+
+[[permission]]
+identifier = "allow-updater-download"
+description = "Download and stage an application update"
+commands.allow = ["updater_download"]
 
 [[permission]]
 identifier = "allow-updater-install"
@@ -301,6 +306,7 @@ permissions = [
   "allow-app-get-version",
   "allow-app-get-platform",
   "allow-updater-check",
+  "allow-updater-download",
   "allow-updater-install",
   "allow-git-get-config",
   "allow-git-add-repo",

@@ -5,14 +5,26 @@ export type DeviceInfo = {
   platform?: Record<string, unknown>;
 };
 
+export type UpdatePhase =
+  | 'idle'
+  | 'checking'
+  | 'available'
+  | 'downloading'
+  | 'ready'
+  | 'upToDate'
+  | 'error';
+
 export type AppState = {
   activePanel: string;
   connected: boolean;
   host: string;
   port: number;
   deviceInfo: DeviceInfo | null;
+  updatePhase: UpdatePhase;
   updateStatus: string;
-  installUpdateReady: boolean;
+  updateVersion: string | null;
+  updateProgress: number;
+  updateBannerDismissed: boolean;
   instances: Array<{ id: string; sizeBytes?: number }>;
   selectedInstanceId: string | null;
   keys: string[];
@@ -38,7 +50,9 @@ export type AppActions = {
   disconnect: () => Promise<void>;
   refreshDevice: () => Promise<void>;
   checkUpdate: () => Promise<void>;
+  downloadUpdate: () => Promise<void>;
   installUpdate: () => Promise<void>;
+  dismissUpdateBanner: () => void;
   refreshInstances: () => Promise<void>;
   selectInstance: (instanceId: string) => Promise<void>;
   setSearch: (value: string) => void;
@@ -78,9 +92,11 @@ export function renderDevicePanel(root: HTMLElement, state: AppState, actions: A
       </section>
       <section class="card">
         <h2>Updates</h2>
+        <p class="hint">App updates use the banner under the mode bar (any Zippy mode). Same actions:</p>
         <div class="actions">
-          <button class="btn" type="button" id="device-check-update">Check for updates</button>
-          <button class="btn primary" type="button" id="device-install-update" hidden>Restart to update</button>
+          <button class="btn" type="button" id="device-check-update">Check</button>
+          <button class="btn" type="button" id="device-download-update" ${state.updatePhase === 'available' || state.updatePhase === 'error' ? '' : 'hidden'}>Download</button>
+          <button class="btn primary" type="button" id="device-install-update" ${state.updatePhase === 'ready' ? '' : 'hidden'}>Restart &amp; install</button>
         </div>
         <p id="device-update-status" class="hint">${escapeHtml(state.updateStatus)}</p>
       </section>
@@ -100,6 +116,7 @@ export function renderDevicePanel(root: HTMLElement, state: AppState, actions: A
   root.querySelector('#device-disconnect')?.addEventListener('click', () => void actions.disconnect());
   root.querySelector('#device-refresh')?.addEventListener('click', () => void actions.refreshDevice());
   root.querySelector('#device-check-update')?.addEventListener('click', () => void actions.checkUpdate());
+  root.querySelector('#device-download-update')?.addEventListener('click', () => void actions.downloadUpdate());
   root.querySelector('#device-install-update')?.addEventListener('click', () => void actions.installUpdate());
 }
 

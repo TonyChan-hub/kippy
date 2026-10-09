@@ -62,8 +62,11 @@ const state: AppState = {
   host: '127.0.0.1',
   port: 9876,
   deviceInfo: null,
-  updateStatus: 'Updates check on startup when packaged.',
-  installUpdateReady: false,
+  updatePhase: 'idle',
+  updateStatus: 'Packaged builds check for updates on startup (no auto-download).',
+  updateVersion: null,
+  updateProgress: 0,
+  updateBannerDismissed: false,
   instances: [],
   selectedInstanceId: null,
   keys: [],
@@ -80,6 +83,13 @@ const state: AppState = {
   selectedEventId: null,
   perf: null,
 };
+
+const updateBannerEl = document.getElementById('update-banner');
+const updateBannerTextEl = document.getElementById('update-banner-text');
+const updateBannerCheckEl = document.getElementById('update-banner-check');
+const updateBannerDownloadEl = document.getElementById('update-banner-download');
+const updateBannerInstallEl = document.getElementById('update-banner-install');
+const updateBannerDismissEl = document.getElementById('update-banner-dismiss');
 
 let activeMode: AppMode = 'inspector';
 let gitController: GitController | null = null;
@@ -136,17 +146,45 @@ const actions: AppActions = {
     }
   },
   async checkUpdate() {
+    state.updateBannerDismissed = false;
+    state.updatePhase = 'checking';
     state.updateStatus = 'Checking for updates…';
+    state.updateProgress = 0;
+    renderUpdateBanner();
     render();
     try {
       await zippy.updater.check();
     } catch (error) {
+      state.updatePhase = 'error';
       state.updateStatus = errorMessage(error);
+      renderUpdateBanner();
+      render();
+    }
+  },
+  async downloadUpdate() {
+    state.updateBannerDismissed = false;
+    state.updatePhase = 'downloading';
+    state.updateStatus = state.updateVersion
+      ? `Downloading update ${state.updateVersion}…`
+      : 'Downloading update…';
+    state.updateProgress = 0;
+    renderUpdateBanner();
+    render();
+    try {
+      await zippy.updater.download();
+    } catch (error) {
+      state.updatePhase = 'error';
+      state.updateStatus = errorMessage(error);
+      renderUpdateBanner();
       render();
     }
   },
   async installUpdate() {
     await zippy.updater.install();
+  },
+  dismissUpdateBanner() {
+    state.updateBannerDismissed = true;
+    renderUpdateBanner();
   },
   async refreshInstances() {
     if (!state.connected) return;
@@ -360,16 +398,65 @@ async function refreshPanelData(): Promise<void> {
   render();
 }
 
+function shouldShowUpdateBanner(): boolean {
+  if (state.updateBannerDismissed) {
+    return state.updatePhase === 'ready' || state.updatePhase === 'downloading';
+  }
+  return (
+    state.updatePhase === 'checking' ||
+    state.updatePhase === 'available' ||
+    state.updatePhase === 'downloading' ||
+    state.updatePhase === 'ready' ||
+    state.updatePhase === 'error' ||
+    state.updatePhase === 'upToDate'
+  );
+}
+
+function renderUpdateBanner(): void {
+  if (!updateBannerEl || !updateBannerTextEl) {
+    return;
+  }
+
+  const show = shouldShowUpdateBanner();
+  updateBannerEl.hidden = !show;
+  if (!show) {
+    return;
+  }
+
+  updateBannerTextEl.textContent = state.updateStatus;
+
+  const showDownload =
+    state.updatePhase === 'available' ||
+    (state.updatePhase === 'error' && Boolean(state.updateVersion));
+  const showInstall = state.updatePhase === 'ready';
+  const showDismiss =
+    state.updatePhase === 'available' ||
+    state.updatePhase === 'upToDate' ||
+    state.updatePhase === 'error';
+
+  updateBannerCheckEl?.toggleAttribute('hidden', state.updatePhase === 'downloading');
+  updateBannerDownloadEl?.toggleAttribute('hidden', !showDownload);
+  updateBannerInstallEl?.toggleAttribute('hidden', !showInstall);
+  updateBannerDismissEl?.toggleAttribute('hidden', !showDismiss);
+
+  if (updateBannerCheckEl) {
+    (updateBannerCheckEl as HTMLButtonElement).disabled =
+      state.updatePhase === 'checking' || state.updatePhase === 'downloading';
+  }
+  if (updateBannerDownloadEl) {
+    (updateBannerDownloadEl as HTMLButtonElement).disabled = state.updatePhase === 'downloading';
+  }
+}
+
 function render(): void {
+  renderUpdateBanner();
+
   if (activeMode !== 'inspector' || !panelEl) {
     return;
   }
 
   if (state.activePanel === 'device') {
     renderDevicePanel(panelEl, state, actions);
-    if (state.installUpdateReady) {
-      panelEl.querySelector('#device-install-update')?.removeAttribute('hidden');
-    }
     return;
   }
 
@@ -463,39 +550,65 @@ export async function bootstrap(): Promise<void> {
   });
 
   zippy.updater.onAvailable((info) => {
-    state.updateStatus = `Update ${info.version} available. Downloading…`;
-    if (activeMode === 'inspector') {
+    // During download, `updater_download` re-emits available before progress.
+    if (state.updatePhase === 'downloading') {
+      state.updateVersion = info.version;
+      renderUpdateBanner();
+      return;
+    }
+    state.updateBannerDismissed = false;
+    state.updatePhase = 'available';
+    state.updateVersion = info.version;
+    state.updateStatus = `Update ${info.version} available. Download when ready.`;
+    renderUpdateBanner();
+    if (activeMode === 'inspector' && state.activePanel === 'device') {
       render();
     }
   });
   zippy.updater.onNotAvailable(() => {
+    state.updatePhase = 'upToDate';
+    state.updateVersion = null;
     state.updateStatus = 'You are on the latest version.';
-    if (activeMode === 'inspector') {
+    renderUpdateBanner();
+    if (activeMode === 'inspector' && state.activePanel === 'device') {
       render();
     }
   });
   zippy.updater.onProgress((progress) => {
-    state.updateStatus = `Downloading update… ${Math.round(progress.percent)}%`;
-    if (activeMode === 'inspector') {
-      render();
-    }
+    state.updatePhase = 'downloading';
+    state.updateProgress = progress.percent;
+    const label = state.updateVersion ? ` ${state.updateVersion}` : '';
+    state.updateStatus = `Downloading update${label}… ${Math.round(progress.percent)}%`;
+    renderUpdateBanner();
   });
   zippy.updater.onDownloaded((info) => {
-    state.updateStatus = `Update ${info.version} ready to install.`;
-    state.installUpdateReady = true;
-    if (activeMode === 'inspector') {
+    state.updateBannerDismissed = false;
+    state.updatePhase = 'ready';
+    state.updateVersion = info.version;
+    state.updateProgress = 100;
+    state.updateStatus = `Update ${info.version} ready. Restart to install.`;
+    renderUpdateBanner();
+    if (activeMode === 'inspector' && state.activePanel === 'device') {
       render();
     }
   });
   zippy.updater.onError((payload) => {
+    state.updatePhase = 'error';
     state.updateStatus = payload.message;
-    if (activeMode === 'inspector') {
+    renderUpdateBanner();
+    if (activeMode === 'inspector' && state.activePanel === 'device') {
       render();
     }
   });
+
+  updateBannerCheckEl?.addEventListener('click', () => void actions.checkUpdate());
+  updateBannerDownloadEl?.addEventListener('click', () => void actions.downloadUpdate());
+  updateBannerInstallEl?.addEventListener('click', () => void actions.installUpdate());
+  updateBannerDismissEl?.addEventListener('click', () => actions.dismissUpdateBanner());
 
   const status = await zippy.probe.status();
   setStatus(status.connected ? `Connected to ${status.url}` : 'Waiting for device', status.connected);
   setMode('inspector');
   setPanel('device');
+  renderUpdateBanner();
 }

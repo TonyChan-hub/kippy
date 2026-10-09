@@ -94,6 +94,46 @@ code {
   gap: 14px;
 }
 
+.update-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--accent-dim);
+  flex-shrink: 0;
+}
+
+.update-banner[hidden] {
+  display: none !important;
+}
+
+.update-banner-text {
+  flex: 1;
+  min-width: 180px;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.update-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn.ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+
+.btn.ghost:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--border);
+}
+
 .mode-body {
   display: grid;
   grid-template-columns: 220px 1fr;

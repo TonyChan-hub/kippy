@@ -193,6 +193,10 @@ ZippyProbe.registerMmkvStore('session', () => {'token': '…'});
 
 Bump `@bear1210/zippy` 并推送到 `main` 会触发 Zippy 发版工作流。打包产物会把 `.dmg` 以及 `download.json` / `latest.json` 发布到 GitHub Releases；文档站点还会把 `.dmg` 镜像到 GitHub Pages（上方下载按钮默认走镜像，避免部分网络访问不了 Releases CDN）。
 
+### 应用内更新
+
+打包版通过 `tauri-plugin-updater` 读取 `https://github.com/TonyChan-hub/kippy/releases/latest/download/latest.json`。启动时**只检查**；模式栏下方横幅提供 **Download**，完成后 **Restart & install**。开发模式不会自动检查。需要该次 Release 带上 updater 签名与 `latest.json`；否则请用上方文档页下载 DMG 手动安装。
+
 当前 macOS runner 产出 **Apple Silicon（aarch64）** 安装包，适用于 M1 / M2 / M3 / M4。若 GitHub 下载失败，可用文档页主按钮，或本机 `npm run zippy:build`。
 
 ### 打开 DMG 时提示「已损坏」？

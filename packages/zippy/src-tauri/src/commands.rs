@@ -91,6 +91,22 @@ struct UpdateProgress {
     percent: f64,
 }
 
+fn updater_error(app: &AppHandle, manual: bool, message: String) -> Result<(), String> {
+    if manual || !cfg!(dev) {
+        let _ = app.emit(
+            "updater:error",
+            serde_json::json!({ "message": message.clone() }),
+        );
+    }
+    // In dev, updater endpoints often fail — don't surface unless manual.
+    if cfg!(dev) && !manual {
+        Ok(())
+    } else {
+        Err(message)
+    }
+}
+
+/// Check GitHub `latest.json` only — never download. Startup uses `manual=false`.
 pub async fn run_updater_check(app: AppHandle, manual: bool) -> Result<(), String> {
     let updater = app
         .updater_builder()
@@ -102,7 +118,40 @@ pub async fn run_updater_check(app: AppHandle, manual: bool) -> Result<(), Strin
             let _ = app.emit(
                 "updater:available",
                 UpdateInfo {
-                    version: update.version.clone(),
+                    version: update.version,
+                },
+            );
+            Ok(())
+        }
+        Ok(None) => {
+            if manual {
+                let _ = app.emit(
+                    "updater:not-available",
+                    UpdateInfo {
+                        version: app.package_info().version.to_string(),
+                    },
+                );
+            }
+            Ok(())
+        }
+        Err(error) => updater_error(&app, manual, error.to_string()),
+    }
+}
+
+/// Re-check then download + stage the update (Tauri cannot hold `Update` across invokes).
+pub async fn run_updater_download(app: AppHandle) -> Result<(), String> {
+    let updater = app
+        .updater_builder()
+        .build()
+        .map_err(|error| error.to_string())?;
+
+    match updater.check().await {
+        Ok(Some(update)) => {
+            let version = update.version.clone();
+            let _ = app.emit(
+                "updater:available",
+                UpdateInfo {
+                    version: version.clone(),
                 },
             );
 
@@ -127,38 +176,33 @@ pub async fn run_updater_check(app: AppHandle, manual: bool) -> Result<(), Strin
                     || {},
                 )
                 .await
-                .map_err(|error| error.to_string())?;
+                .map_err(|error| {
+                    let message = error.to_string();
+                    let _ = app.emit(
+                        "updater:error",
+                        serde_json::json!({ "message": message.clone() }),
+                    );
+                    message
+                })?;
 
-            let _ = app.emit(
-                "updater:downloaded",
-                UpdateInfo {
-                    version: update.version,
-                },
-            );
+            let _ = app.emit("updater:downloaded", UpdateInfo { version });
             Ok(())
         }
         Ok(None) => {
-            if manual {
-                let _ = app.emit(
-                    "updater:not-available",
-                    UpdateInfo {
-                        version: app.package_info().version.to_string(),
-                    },
-                );
-            }
-            Ok(())
+            let message = "No update available to download.".to_string();
+            let _ = app.emit(
+                "updater:error",
+                serde_json::json!({ "message": message.clone() }),
+            );
+            Err(message)
         }
         Err(error) => {
             let message = error.to_string();
-            if manual || !cfg!(dev) {
-                let _ = app.emit("updater:error", serde_json::json!({ "message": message.clone() }));
-            }
-            // In dev, updater endpoints often fail — don't surface unless manual.
-            if cfg!(dev) && !manual {
-                Ok(())
-            } else {
-                Err(message)
-            }
+            let _ = app.emit(
+                "updater:error",
+                serde_json::json!({ "message": message.clone() }),
+            );
+            Err(message)
         }
     }
 }
@@ -166,6 +210,11 @@ pub async fn run_updater_check(app: AppHandle, manual: bool) -> Result<(), Strin
 #[tauri::command]
 pub async fn updater_check(app: AppHandle) -> Result<(), String> {
     run_updater_check(app, true).await
+}
+
+#[tauri::command]
+pub async fn updater_download(app: AppHandle) -> Result<(), String> {
+    run_updater_download(app).await
 }
 
 #[tauri::command]

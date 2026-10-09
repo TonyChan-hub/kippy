@@ -123,6 +123,16 @@ See [`../zippy_flutter/README.md`](../zippy_flutter/README.md) and [`../zippy_rn
 
 Packaged macOS builds use `tauri-plugin-updater` with GitHub Releases (`zippy-v{version}` tags), `latest.json` (updater), and `download.json` (docs site download panel). Bump this package version and push to `main` to trigger [`.github/workflows/zippy-release.yml`](../../.github/workflows/zippy-release.yml).
 
+**In-app flow (packaged builds only):**
+
+1. On startup Zippy **checks** `…/releases/latest/download/latest.json` (no download).
+2. A global banner offers **Download** when a newer version exists.
+3. After download completes, **Restart & install** applies the update.
+
+Dev (`tauri dev`) skips the startup check; manual Check still works but often fails without a public release. In-app update requires that Release to publish **updater signatures** + `latest.json` (`TAURI_SIGNING_PRIVATE_KEY`). Without them, the DMG still ships — users install from the [docs Zippy page](https://tonychan-hub.github.io/kippy/guide/zippy#download).
+
+Keep `package.json` and `src-tauri/tauri.conf.json` versions aligned; CI syncs `tauri.conf.json` from `package.json` before each build.
+
 After a release, users can download the `.dmg` from the [docs Zippy page](https://tonychan-hub.github.io/kippy/guide/zippy#download).
 
 macOS builds use **ad-hoc** Apple code signing (`signingIdentity: "-"`) so Apple Silicon Gatekeeper does not show a false “damaged” dialog after download. First launch may still need **right-click → Open** (or System Settings → Privacy & Security → Open Anyway). Full Developer ID + notarization is not required for Phase 1. Updater signatures (minisign) are separate from Apple code signing.

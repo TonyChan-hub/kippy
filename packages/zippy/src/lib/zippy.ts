@@ -63,6 +63,7 @@ export const zippy = {
   },
   updater: {
     check: () => invoke<void>('updater_check'),
+    download: () => invoke<void>('updater_download'),
     install: () => invoke<void>('updater_install'),
     onAvailable: (callback: (info: UpdateInfo) => void) =>
       subscribe('updater:available', callback),
