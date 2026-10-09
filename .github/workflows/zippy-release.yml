@@ -118,7 +118,10 @@ jobs:
         if: steps.tag_check.outputs.skip != 'true'
         working-directory: packages/zippy
         env:
-          TAURI_SIGNING_PRIVATE_KEY: ${{ steps.signing.outputs.key_path }}
+          # Must be the key string (or base64 of minisign secret), NOT a filesystem path.
+          # Passing a path here previously made signing fail → DMG-only Release without
+          # latest.json → clients hit "Could not fetch a valid release JSON from the remote".
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
           HAS_KEY: ${{ steps.signing.outputs.has_key }}
         run: |

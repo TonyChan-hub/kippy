@@ -49,10 +49,10 @@ Then:
 
 1. Put the **printed public key** into `src-tauri/tauri.conf.json` → `plugins.updater.pubkey`
 2. In GitHub → **Settings → Secrets and variables → Actions → Repository secrets** (not Environment secrets):
-   - `TAURI_SIGNING_PRIVATE_KEY` = full private key from the generate output / `.updater-key` file (must decode to a minisign secret that starts with `untrusted comment:`)
+   - `TAURI_SIGNING_PRIVATE_KEY` = contents of `.updater-key` (often one-line base64; must decode to a minisign secret starting with `untrusted comment:`)
    - `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` = leave unset / empty if you used `-p ""`
 
-If the signing secret is missing or invalid, the release workflow still publishes the `.dmg` (docs download works); only in-app updater signatures are skipped.
+CI must pass the **key string** via `TAURI_SIGNING_PRIVATE_KEY` (not a file path). A path belongs in `TAURI_SIGNING_PRIVATE_KEY_PATH` only. If signing is skipped, the Release still gets a `.dmg`, but **no `latest.json`** — in-app update then fails with `Could not fetch a valid release JSON from the remote`.
 
 ## Modes
 
