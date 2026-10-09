@@ -2,6 +2,8 @@
 
 Zippy is a **Tauri 2** desktop app with four top-level modes: **Git** (multi-repo + SSH profiles), **Inspector** (mobile debug data), **Tools** (adb / iOS Simulator shortcuts), and **APK** (local package playground). It ships via **GitHub Releases**, not npm.
 
+Why it exists—manual logs → Logger → Zippy, plus Flipper / Reactotron / IDE comparisons: [Why Zippy exists](/blog/why-zippy).
+
 <ZippyDownload locale="en" />
 
 ## Modes

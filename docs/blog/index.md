@@ -4,6 +4,7 @@ Engineering notes on Kippy, NativeKit, and Zippy — design trade-offs, API evol
 
 | Post | Date | Tags |
 | ---- | ---- | ---- |
+| [Why Zippy exists: starting from how we debug](./why-zippy) | 2026-10-09 | Zippy · Logger · Flipper · Debugging |
 | [What the env helper does: a brand-new Mac / Mac mini](./env-helper-new-mac) | 2026-10-09 | Kippy · Environment · macOS |
 | [SQLite in RN & Flutter: everyday use, weak networks, optimistic updates](./sqlite-offline-optimistic) | 2026-10-09 | SQLite · React Native · Flutter · Offline |
 | [Android & iOS permissions: what each status means](./permission-status) | 2026-10-09 | NativeKit · Permissions · Android · iOS |

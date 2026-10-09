@@ -2,6 +2,8 @@
 
 Zippy 是基于 **Tauri 2** 的桌面应用，顶层四个大模式：**Git**（多仓库 + SSH Profile）、**Inspector**（移动端调试数据）、**Tools**（adb / iOS Simulator 快捷命令）、**APK**（本地包体分析 Playground）。通过 **GitHub Releases** 分发，不发布到 npm。
 
+从「手动日志 → Logger → Zippy」的排查升级，以及与 Flipper / Reactotron / 官方 IDE 的能力对照，见博客：[为什么要有 Zippy](/zh/blog/why-zippy)。
+
 <ZippyDownload locale="zh" />
 
 ## 模式

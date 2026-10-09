@@ -89,6 +89,10 @@ export default defineConfig({
               items: [
                 { text: 'All posts', link: '/blog/' },
                 {
+                  text: 'Why Zippy (vs Flipper & others)',
+                  link: '/blog/why-zippy',
+                },
+                {
                   text: 'Env helper on a new Mac',
                   link: '/blog/env-helper-new-mac',
                 },
@@ -195,6 +199,10 @@ export default defineConfig({
               text: '技术博客',
               items: [
                 { text: '全部文章', link: '/zh/blog/' },
+                {
+                  text: '为什么要有 Zippy',
+                  link: '/zh/blog/why-zippy',
+                },
                 {
                   text: '环境助手：全新 Mac 开箱',
                   link: '/zh/blog/env-helper-new-mac',
