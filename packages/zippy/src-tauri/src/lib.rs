@@ -38,6 +38,7 @@ pub fn run() {
             commands::probe_request,
             commands::app_get_version,
             commands::app_get_platform,
+            commands::open_external_url,
             commands::updater_check,
             commands::updater_download,
             commands::updater_install,

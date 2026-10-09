@@ -39,6 +39,11 @@ description = "Read the host OS platform"
 commands.allow = ["app_get_platform"]
 
 [[permission]]
+identifier = "allow-open-external-url"
+description = "Open allowlisted docs / GitHub URLs in the system browser"
+commands.allow = ["open_external_url"]
+
+[[permission]]
 identifier = "allow-updater-check"
 description = "Check GitHub Releases for an application update (no download)"
 commands.allow = ["updater_check"]
@@ -305,6 +310,7 @@ permissions = [
   "allow-probe-request",
   "allow-app-get-version",
   "allow-app-get-platform",
+  "allow-open-external-url",
   "allow-updater-check",
   "allow-updater-download",
   "allow-updater-install",

@@ -81,6 +81,35 @@ pub fn app_get_platform() -> String {
     std::env::consts::OS.to_string()
 }
 
+#[tauri::command]
+pub fn open_external_url(url: String) -> Result<(), String> {
+    const ALLOWED_PREFIXES: &[&str] = &[
+        "https://tonychan-hub.github.io/kippy",
+        "https://github.com/TonyChan-hub/kippy",
+    ];
+    if !ALLOWED_PREFIXES
+        .iter()
+        .any(|prefix| url == *prefix || url.starts_with(&format!("{prefix}/")))
+    {
+        return Err("URL is not allowlisted".into());
+    }
+
+    #[cfg(target_os = "macos")]
+    {
+        std::process::Command::new("open")
+            .arg(&url)
+            .spawn()
+            .map_err(|error| error.to_string())?;
+        return Ok(());
+    }
+
+    #[cfg(not(target_os = "macos"))]
+    {
+        let _ = url;
+        Err("Opening external URLs is only supported on macOS in this build".into())
+    }
+}
+
 #[derive(Clone, Serialize)]
 struct UpdateInfo {
     version: String,

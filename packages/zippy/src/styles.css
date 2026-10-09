@@ -94,6 +94,25 @@ code {
   gap: 14px;
 }
 
+.header-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-link {
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 560;
+}
+
+.header-link:hover {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
 .update-banner {
   display: flex;
   align-items: center;

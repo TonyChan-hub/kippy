@@ -77,4 +77,5 @@ export const zippy = {
       subscribe('updater:error', callback),
   },
   getVersion: () => invoke<string>('app_get_version'),
+  openExternalUrl: (url: string) => invoke<void>('open_external_url', { url }),
 };

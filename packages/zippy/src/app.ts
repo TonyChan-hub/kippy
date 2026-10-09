@@ -606,6 +606,19 @@ export async function bootstrap(): Promise<void> {
   updateBannerInstallEl?.addEventListener('click', () => void actions.installUpdate());
   updateBannerDismissEl?.addEventListener('click', () => actions.dismissUpdateBanner());
 
+  const DOCS_URL = 'https://tonychan-hub.github.io/kippy/guide/zippy';
+  const GITHUB_URL = 'https://github.com/TonyChan-hub/kippy';
+  document.getElementById('header-link-docs')?.addEventListener('click', () => {
+    void zippy.openExternalUrl(DOCS_URL).catch((error) => {
+      setStatus(errorMessage(error), false);
+    });
+  });
+  document.getElementById('header-link-github')?.addEventListener('click', () => {
+    void zippy.openExternalUrl(GITHUB_URL).catch((error) => {
+      setStatus(errorMessage(error), false);
+    });
+  });
+
   const status = await zippy.probe.status();
   setStatus(status.connected ? `Connected to ${status.url}` : 'Waiting for device', status.connected);
   setMode('inspector');
