@@ -14,7 +14,7 @@ What `@bear1210/create-rn-template` puts into a new app.
 | ------ | --------------- |
 | Logger | Project `logger` service |
 | i18n | Locale files under `src/i18n` |
-| SQLite | `react-native-quick-sqlite` |
+| SQLite | `react-native-quick-sqlite` — everyday use, weak-network outbox, and optimistic updates: [blog](/blog/sqlite-offline-optimistic) |
 | MMKV | `react-native-mmkv` |
 | HTTP | Shared `httpClient` (fetch + Zippy network hook in `__DEV__`) |
 | Zippy | `@bear1210/zippy-rn` — `start()` in `__DEV__`; registers MMKV + SQLite with app `openDb` (see [Zippy](./zippy)) |

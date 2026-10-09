@@ -89,6 +89,14 @@ export default defineConfig({
               items: [
                 { text: 'All posts', link: '/blog/' },
                 {
+                  text: 'SQLite: offline & optimistic updates',
+                  link: '/blog/sqlite-offline-optimistic',
+                },
+                {
+                  text: 'Permission status (Android / iOS)',
+                  link: '/blog/permission-status',
+                },
+                {
                   text: 'Zippy APK Playground',
                   link: '/blog/zippy-apk-playground',
                 },
@@ -183,6 +191,14 @@ export default defineConfig({
               text: '技术博客',
               items: [
                 { text: '全部文章', link: '/zh/blog/' },
+                {
+                  text: 'SQLite：弱网与乐观更新',
+                  link: '/zh/blog/sqlite-offline-optimistic',
+                },
+                {
+                  text: '权限 status 含义（Android / iOS）',
+                  link: '/zh/blog/permission-status',
+                },
                 {
                   text: 'Zippy APK Playground 使用说明',
                   link: '/zh/blog/zippy-apk-playground',

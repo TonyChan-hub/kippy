@@ -14,7 +14,7 @@
 | ---- | ---- |
 | Logger | 项目内 `logger` 服务 |
 | i18n | `src/i18n` 多语言 |
-| SQLite | `react-native-quick-sqlite` |
+| SQLite | `react-native-quick-sqlite` — 常规用法、弱网出站队列与乐观更新见 [博客](/zh/blog/sqlite-offline-optimistic) |
 | MMKV | `react-native-mmkv` |
 | HTTP | 共用 `httpClient`（`__DEV__` 下挂 Zippy network） |
 | Zippy | `@bear1210/zippy-rn` — `__DEV__` 下 `start()`；注册 MMKV + SQLite（传入 App 的 `openDb`，见 [Zippy](./zippy)） |

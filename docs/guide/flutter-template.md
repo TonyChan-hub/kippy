@@ -11,7 +11,7 @@ What `@bear1210/create-flutter-template` puts into a new app.
 ## Infrastructure (`lib/core/`)
 
 - Dio client + auth token store / 401 refresh interceptor hook
-- sqflite-backed `LocalLogger` (query / export JSON·CSV)
+- sqflite-backed `LocalLogger` (query / export JSON·CSV) and `LocalDatabase` KV — everyday use, weak-network outbox, optimistic updates: [blog](/blog/sqlite-offline-optimistic)
 - Material 3 theme (Poppins) + ScreenUtil (390×844)
 - Camera / photo-library permission helpers (`permission_handler` by default; switches to [NativeKit](./native-kit) when `--modules=permission` / `--preset=media`)
 

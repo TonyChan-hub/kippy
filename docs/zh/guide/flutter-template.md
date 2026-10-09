@@ -11,7 +11,7 @@
 ## 基建（`lib/core/`）
 
 - Dio 客户端 + token 存储 / 401 刷新拦截钩子
-- 基于 sqflite 的 `LocalLogger`（查询 / 导出 JSON·CSV）
+- 基于 sqflite 的 `LocalLogger`（查询 / 导出 JSON·CSV）与 `LocalDatabase` KV — 常规用法、弱网出站队列与乐观更新见 [博客](/zh/blog/sqlite-offline-optimistic)
 - Material 3 主题（Poppins）+ ScreenUtil（390×844）
 - 相机 / 相册权限助手（默认 `permission_handler`；使用 `--modules=permission` / `--preset=media` 时切换为 [NativeKit](./native-kit)）
 

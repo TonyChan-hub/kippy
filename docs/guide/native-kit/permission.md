@@ -28,6 +28,8 @@ Setup: [Install](./install). Manifest / Info.plist: [Platform declarations](./pl
 
 Treat both `granted` and `limited` as “usable” unless you need full access.
 
+Longer walkthrough (platform mapping, UI branching, `ensure` semantics): [Android & iOS permissions: what each status means](/blog/permission-status).
+
 ## Kinds
 
 `kind` is the **cross-platform permission id**: it tells `check` / `request` / `ensure` *which capability* to inspect or ask for.

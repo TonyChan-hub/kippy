@@ -28,6 +28,8 @@
 
 除非需要完整权限，否则可将 `granted` 与 `limited` 都视为「可用」。
 
+展开说明（双端对照、UI 分支、与 `ensure` 的关系）见博客：[Android / iOS 权限：status 到底是什么意思](/zh/blog/permission-status)。
+
 ## 权限类型（kind）
 
 `kind` 是 **跨端统一的权限标识**：告诉 `check` / `request` / `ensure`「要查 / 申请哪一类能力」。
