@@ -31,4 +31,4 @@ npx @bear1210/create-flutter-template myFlutterApp --org=com.example
 cd myFlutterApp && flutter run
 ```
 
-Next: [Packages](./packages) · [Create RN app](./create-rn) · [Create Flutter app](./create-flutter) · [Zippy](./zippy) · [NativeKit](./native-kit)
+Next: [Packages](./packages) · [Create RN app](./create-rn) · [Create Flutter app](./create-flutter) · [Env helper on a new Mac](/blog/env-helper-new-mac) · [Zippy](./zippy) · [NativeKit](./native-kit)

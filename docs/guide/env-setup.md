@@ -1,6 +1,6 @@
 # Setup Android / iOS environment
 
-Global toolchain bootstrap on **macOS only**. No project path required.
+Global toolchain bootstrap on **macOS only**. No project path required. Walkthrough for a brand-new Mac / Mac mini: [What the env helper does](/blog/env-helper-new-mac).
 
 ## Android (SDK / JDK / emulator, no Android Studio)
 

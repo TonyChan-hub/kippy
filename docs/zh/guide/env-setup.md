@@ -1,6 +1,6 @@
 # 配置 Android / iOS 环境
 
-在 **macOS** 上做全局工具链引导，不需要指定项目路径。
+在 **macOS** 上做全局工具链引导，不需要指定项目路径。全新 Mac / Mac mini 的开箱顺序、装了什么、如何体检，见博客：[环境助手做了什么：全新 Mac / Mac mini 开箱即用](/zh/blog/env-helper-new-mac)。
 
 ## Android（SDK / JDK / 模拟器，无需 Android Studio）
 

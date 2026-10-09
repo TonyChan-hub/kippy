@@ -31,4 +31,4 @@ npx @bear1210/create-flutter-template myFlutterApp --org=com.example
 cd myFlutterApp && flutter run
 ```
 
-接下来：[包一览](./packages) · [创建 RN 项目](./create-rn) · [创建 Flutter 项目](./create-flutter) · [Zippy](./zippy) · [NativeKit](./native-kit)
+接下来：[包一览](./packages) · [创建 RN 项目](./create-rn) · [创建 Flutter 项目](./create-flutter) · [环境助手开箱](/zh/blog/env-helper-new-mac) · [Zippy](./zippy) · [NativeKit](./native-kit)

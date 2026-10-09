@@ -1,6 +1,6 @@
 # Check mobile environment
 
-Report Common / Android / iOS / React Native / Flutter readiness on the current machine.
+Report Common / Android / iOS / React Native / Flutter readiness on the current machine. How this pairs with `setup-rn-*-env` on a new Mac: [What the env helper does](/blog/env-helper-new-mac).
 
 ```bash
 npx -p @bear1210/create-rn-template check-mobile-env

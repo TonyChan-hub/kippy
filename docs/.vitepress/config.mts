@@ -89,6 +89,10 @@ export default defineConfig({
               items: [
                 { text: 'All posts', link: '/blog/' },
                 {
+                  text: 'Env helper on a new Mac',
+                  link: '/blog/env-helper-new-mac',
+                },
+                {
                   text: 'SQLite: offline & optimistic updates',
                   link: '/blog/sqlite-offline-optimistic',
                 },
@@ -191,6 +195,10 @@ export default defineConfig({
               text: '技术博客',
               items: [
                 { text: '全部文章', link: '/zh/blog/' },
+                {
+                  text: '环境助手：全新 Mac 开箱',
+                  link: '/zh/blog/env-helper-new-mac',
+                },
                 {
                   text: 'SQLite：弱网与乐观更新',
                   link: '/zh/blog/sqlite-offline-optimistic',

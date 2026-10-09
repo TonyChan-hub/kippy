@@ -4,6 +4,7 @@ Kippy / NativeKit / Zippy 相关的工程向文章：设计取舍、API 演进�
 
 | 文章 | 日期 | 标签 |
 | ---- | ---- | ---- |
+| [环境助手做了什么：全新 Mac / Mac mini 开箱即用](./env-helper-new-mac) | 2026-10-09 | Kippy · 环境 · macOS |
 | [SQLite 在 RN / Flutter：常规用法、弱网与乐观更新](./sqlite-offline-optimistic) | 2026-10-09 | SQLite · React Native · Flutter · 离线 |
 | [Android / iOS 权限：status 到底是什么意思](./permission-status) | 2026-10-09 | NativeKit · 权限 · Android · iOS |
 | [Zippy APK Playground 使用说明](./zippy-apk-playground) | 2026-10-08 | Zippy · APK · AAB |

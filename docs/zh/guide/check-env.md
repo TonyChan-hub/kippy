@@ -1,6 +1,6 @@
 # 检查移动端环境
 
-汇报当前机器上 Common / Android / iOS / React Native / Flutter 的就绪情况。
+汇报当前机器上 Common / Android / iOS / React Native / Flutter 的就绪情况。与 `setup-rn-*-env` 如何配合、全新机器怎么跑，见：[环境助手做了什么](/zh/blog/env-helper-new-mac)。
 
 ```bash
 npx -p @bear1210/create-rn-template check-mobile-env
