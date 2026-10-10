@@ -197,6 +197,10 @@ Bump `@bear1210/zippy` 并推送到 `main` 会触发 Zippy 发版工作流。打
 
 打包版通过 `tauri-plugin-updater` 读取 `https://github.com/TonyChan-hub/kippy/releases/latest/download/latest.json`。启动时**只检查**；模式栏下方横幅提供 **Download**，完成后 **Restart & install**。开发模式不会自动检查。需要该次 Release 带上 updater 签名与 `latest.json`；否则请用上方文档页下载 DMG 手动安装。
 
+应用内更新会**原地替换** `Zippy.app`。请先把 App 拖进 **`/Applications`** 再从那里启动——若仍在 DMG、下载文件夹或桌面运行，更新会报只读文件系统错误（`os error 30`）。
+
+分步说明、依赖与排障见博客：[Zippy 0.0.6：应用内自动更新怎么用](/zh/blog/zippy-auto-update)。
+
 当前 macOS runner 产出 **Apple Silicon（aarch64）** 安装包，适用于 M1 / M2 / M3 / M4。若 GitHub 下载失败，可用文档页主按钮，或本机 `npm run zippy:build`。
 
 ### 打开 DMG 时提示「已损坏」？

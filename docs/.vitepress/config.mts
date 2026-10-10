@@ -89,6 +89,10 @@ export default defineConfig({
               items: [
                 { text: 'All posts', link: '/blog/' },
                 {
+                  text: 'Zippy 0.0.6: in-app auto-update',
+                  link: '/blog/zippy-auto-update',
+                },
+                {
                   text: 'Why Zippy (vs Flipper & others)',
                   link: '/blog/why-zippy',
                 },
@@ -199,6 +203,10 @@ export default defineConfig({
               text: '技术博客',
               items: [
                 { text: '全部文章', link: '/zh/blog/' },
+                {
+                  text: 'Zippy 0.0.6：应用内自动更新',
+                  link: '/zh/blog/zippy-auto-update',
+                },
                 {
                   text: '为什么要有 Zippy',
                   link: '/zh/blog/why-zippy',

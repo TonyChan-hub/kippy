@@ -197,6 +197,10 @@ Bump `@bear1210/zippy` and push to `main` to trigger the Zippy release workflow.
 
 Packaged Zippy reads `https://github.com/TonyChan-hub/kippy/releases/latest/download/latest.json` via `tauri-plugin-updater`. Startup **checks only**; the banner under the mode bar lets you **Download**, then **Restart & install**. Dev mode does not auto-check. Updates need a Release that published updater signatures + `latest.json`; otherwise install the DMG from the download section above.
 
+In-app update **replaces** `Zippy.app` on disk. Drag the app into **`/Applications`** first, then launch from there — updating while still on the DMG, Downloads, or Desktop fails with a read-only filesystem error (`os error 30`).
+
+Walkthrough, dependencies, and troubleshooting: [Zippy 0.0.6: in-app auto-update](/blog/zippy-auto-update).
+
 Current macOS runners produce an **Apple Silicon (aarch64)** installer (M1–M4). If GitHub download fails, use the primary docs button, or build locally with `npm run zippy:build`.
 
 ### DMG says “damaged”?

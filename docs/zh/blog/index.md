@@ -4,6 +4,7 @@ Kippy / NativeKit / Zippy 相关的工程向文章：设计取舍、API 演进�
 
 | 文章 | 日期 | 标签 |
 | ---- | ---- | ---- |
+| [Zippy 0.0.6：应用内自动更新怎么用](./zippy-auto-update) | 2026-10-09 | Zippy · 自动更新 · macOS |
 | [为什么要有 Zippy：从定位问题说起](./why-zippy) | 2026-10-09 | Zippy · Logger · Flipper · 排查 |
 | [环境助手做了什么：全新 Mac / Mac mini 开箱即用](./env-helper-new-mac) | 2026-10-09 | Kippy · 环境 · macOS |
 | [SQLite 在 RN / Flutter：常规用法、弱网与乐观更新](./sqlite-offline-optimistic) | 2026-10-09 | SQLite · React Native · Flutter · 离线 |

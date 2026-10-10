@@ -121,6 +121,7 @@ struct UpdateProgress {
 }
 
 fn updater_error(app: &AppHandle, manual: bool, message: String) -> Result<(), String> {
+    let message = map_updater_error(message);
     if manual || !cfg!(dev) {
         let _ = app.emit(
             "updater:error",
@@ -133,6 +134,55 @@ fn updater_error(app: &AppHandle, manual: bool, message: String) -> Result<(), S
     } else {
         Err(message)
     }
+}
+
+/// macOS in-app update replaces the `.app` bundle in place. That fails when the
+/// app is still on a read-only DMG, or under Downloads / Desktop (os error 30).
+fn macos_update_install_hint() -> &'static str {
+    "Cannot install update: move Zippy.app into /Applications, quit, relaunch from there, then Download again. (Do not update while running from the DMG, Downloads, or Desktop.)"
+}
+
+fn app_path_allows_self_update() -> bool {
+    #[cfg(target_os = "macos")]
+    {
+        let Ok(exe) = std::env::current_exe() else {
+            return true;
+        };
+        let path = exe.canonicalize().unwrap_or(exe);
+        let text = path.to_string_lossy();
+        // DMG mounts are always read-only for install.
+        if text.starts_with("/Volumes/") {
+            return false;
+        }
+        text.starts_with("/Applications/")
+    }
+    #[cfg(not(target_os = "macos"))]
+    {
+        true
+    }
+}
+
+fn map_updater_error(message: String) -> String {
+    #[cfg(target_os = "macos")]
+    {
+        let lower = message.to_ascii_lowercase();
+        if lower.contains("read-only file system")
+            || lower.contains("os error 30")
+            || lower.contains("erofs")
+        {
+            return macos_update_install_hint().to_string();
+        }
+    }
+    message
+}
+
+fn emit_updater_error(app: &AppHandle, message: String) -> String {
+    let message = map_updater_error(message);
+    let _ = app.emit(
+        "updater:error",
+        serde_json::json!({ "message": message.clone() }),
+    );
+    message
 }
 
 /// Check GitHub `latest.json` only — never download. Startup uses `manual=false`.
@@ -169,10 +219,17 @@ pub async fn run_updater_check(app: AppHandle, manual: bool) -> Result<(), Strin
 
 /// Re-check then download + stage the update (Tauri cannot hold `Update` across invokes).
 pub async fn run_updater_download(app: AppHandle) -> Result<(), String> {
+    if !app_path_allows_self_update() {
+        return Err(emit_updater_error(
+            &app,
+            macos_update_install_hint().to_string(),
+        ));
+    }
+
     let updater = app
         .updater_builder()
         .build()
-        .map_err(|error| error.to_string())?;
+        .map_err(|error| emit_updater_error(&app, error.to_string()))?;
 
     match updater.check().await {
         Ok(Some(update)) => {
@@ -205,34 +262,16 @@ pub async fn run_updater_download(app: AppHandle) -> Result<(), String> {
                     || {},
                 )
                 .await
-                .map_err(|error| {
-                    let message = error.to_string();
-                    let _ = app.emit(
-                        "updater:error",
-                        serde_json::json!({ "message": message.clone() }),
-                    );
-                    message
-                })?;
+                .map_err(|error| emit_updater_error(&app, error.to_string()))?;
 
             let _ = app.emit("updater:downloaded", UpdateInfo { version });
             Ok(())
         }
-        Ok(None) => {
-            let message = "No update available to download.".to_string();
-            let _ = app.emit(
-                "updater:error",
-                serde_json::json!({ "message": message.clone() }),
-            );
-            Err(message)
-        }
-        Err(error) => {
-            let message = error.to_string();
-            let _ = app.emit(
-                "updater:error",
-                serde_json::json!({ "message": message.clone() }),
-            );
-            Err(message)
-        }
+        Ok(None) => Err(emit_updater_error(
+            &app,
+            "No update available to download.".to_string(),
+        )),
+        Err(error) => Err(emit_updater_error(&app, error.to_string())),
     }
 }
 

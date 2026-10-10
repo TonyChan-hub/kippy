@@ -48,5 +48,6 @@ Short posts on design trade-offs, API evolution, and shipping pitfalls.
 
 | Post | Summary |
 | ---- | ------- |
-| [NativeKit: designing a dual-end permission facade](/blog/native-kit-permissions) | Unified `kind`s, platform mapping, compliance tags, and why device info is a separate module |
+| [Zippy 0.0.6: in-app auto-update](/blog/zippy-auto-update) | Packaged Check → Download → Restart; install under `/Applications`, plus `latest.json` and common fixes |
+| [Why Zippy exists: starting from how we debug](/blog/why-zippy) | Manual logs → Logger → Zippy, and how that stacks up against Flipper and similar tools |
 | [More posts…](/blog/) | Full index |

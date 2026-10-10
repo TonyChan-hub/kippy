@@ -125,9 +125,10 @@ Packaged macOS builds use `tauri-plugin-updater` with GitHub Releases (`zippy-v{
 
 **In-app flow (packaged builds only):**
 
-1. On startup Zippy **checks** `…/releases/latest/download/latest.json` (no download).
-2. A global banner offers **Download** when a newer version exists.
-3. After download completes, **Restart & install** applies the update.
+1. Install into **`/Applications`** (required — updating from a DMG / Downloads / Desktop hits `Read-only file system (os error 30)`).
+2. On startup Zippy **checks** `…/releases/latest/download/latest.json` (no download).
+3. A global banner offers **Download** when a newer version exists.
+4. After download completes, **Restart & install** applies the update.
 
 Dev (`tauri dev`) skips the startup check; manual Check still works but often fails without a public release. In-app update requires that Release to publish **updater signatures** + `latest.json` (`TAURI_SIGNING_PRIVATE_KEY`). Without them, the DMG still ships — users install from the [docs Zippy page](https://tonychan-hub.github.io/kippy/guide/zippy#download).
 

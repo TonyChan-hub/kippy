@@ -48,5 +48,6 @@ features:
 
 | 文章 | 摘要 |
 | ---- | ---- |
-| [NativeKit：双端权限门面怎么设计](/zh/blog/native-kit-permissions) | 统一 `kind`、平台映射、强合规标注，以及为何把设备信息拆成独立模块 |
+| [Zippy 0.0.6：应用内自动更新怎么用](/zh/blog/zippy-auto-update) | 打包版 Check → Download → Restart；须装到 `/Applications`，以及 `latest.json` 与常见排障 |
+| [为什么要有 Zippy：从定位问题说起](/zh/blog/why-zippy) | 从手动日志 → Logger → Zippy 的排查升级，以及与 Flipper 等工具的对照 |
 | [更多文章…](/zh/blog/) | 完整列表与分类 |
